@@ -1,0 +1,2 @@
+module ProspectiveUsersHelper
+end

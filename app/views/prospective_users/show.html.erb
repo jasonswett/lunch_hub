@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>First name:</strong>
+  <%= @prospective_user.first_name %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @prospective_user.email %>
+</p>
+
+<%= link_to 'Edit', edit_prospective_user_path(@prospective_user) %> |
+<%= link_to 'Back', prospective_users_path %>
