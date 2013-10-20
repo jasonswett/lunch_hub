@@ -33,6 +33,7 @@ group :doc do
 end
 
 gem "rspec-rails", "~> 2.14.0"
+gem 'anjlab-bootstrap-rails', require: 'bootstrap-rails', github: 'anjlab/bootstrap-rails'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
