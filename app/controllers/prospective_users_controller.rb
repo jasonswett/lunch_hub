@@ -11,7 +11,7 @@ class ProspectiveUsersController < ApplicationController
 
     respond_to do |format|
       if @prospective_user.save
-        format.html { redirect_to @prospective_user, notice: 'Prospective user was successfully created.' }
+        format.html { redirect_to root_path, notice: 'Prospective user was successfully created.' }
         format.json { render action: 'show', status: :created, location: @prospective_user }
       else
         format.html { render action: 'new' }
