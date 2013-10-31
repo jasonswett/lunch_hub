@@ -1,15 +1,18 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="lunchHub">
 <head>
   <title>Lunch Hub</title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= stylesheet_link_tag    "application", media: "all" %>
+  <%= javascript_include_tag "application", controller_name %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
 <div class="container">
-  <%= yield %>
+  <h1>Lunch Hub</h1>
+  <div ng-view>
+    <%= yield %>
+  </div>
 </div>
 
 </body>
