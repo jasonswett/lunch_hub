@@ -1,6 +1,6 @@
 module.exports = function(config) {
   config.set({
-    basePath: '..',
+    basePath: '../..',
 
     frameworks: ['jasmine'],
 
@@ -16,7 +16,7 @@ module.exports = function(config) {
       'app/assets/javascripts/main.js.coffee',
       'app/assets/javascripts/angular/controllers/GroupIndexCtrl.js.coffee',
       'app/assets/javascripts/angular/*',
-      'test/*_spec.js.coffee' 
+      'spec/javascripts/*_spec.js.coffee' 
     ]
   });
 };
