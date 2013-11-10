@@ -32,6 +32,12 @@ group :doc do
   gem 'sdoc', require: false
 end
 
+gem "rspec-rails", "~> 2.14.0"
+gem "capybara", "~> 2.1.0"
+
+gem 'anjlab-bootstrap-rails', require: 'bootstrap-rails', github: 'anjlab/bootstrap-rails'
+gem "devise", "~> 3.1.1"
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
