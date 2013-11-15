@@ -1,4 +1,8 @@
 LunchHub::Application.routes.draw do
+  resources :addresses
+
+  resources :states
+
   resources :groups
 
   devise_for :users

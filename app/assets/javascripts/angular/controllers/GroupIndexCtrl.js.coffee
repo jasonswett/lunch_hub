@@ -6,5 +6,5 @@
   )
 
   $scope.viewPost = (id) ->
-    $location.url('/groups/' + id)
+    $location.url "/groups/#{id}"
 ]
