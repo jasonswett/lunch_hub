@@ -15,3 +15,15 @@
       controller: 'HomeCtrl'
     })
 ])
+
+@lunchHub.factory "Page", ->
+  title = "default"
+  title: ->
+    title
+
+  setTitle: (newTitle) ->
+    title = newTitle
+
+@lunchHub.controller 'titleCtrl', ['$scope', 'Page', ($scope, Page) ->
+  $scope.Page = Page
+]
