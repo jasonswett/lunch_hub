@@ -1,4 +1,8 @@
 class ProspectiveUsersController < ApplicationController
+  skip_before_filter :lock_out
+  skip_before_filter :authenticate_user!
+  layout 'beta'
+
   # GET /prospective_users/new
   def new
     @prospective_user = ProspectiveUser.new
@@ -11,13 +15,16 @@ class ProspectiveUsersController < ApplicationController
 
     respond_to do |format|
       if @prospective_user.save
-        format.html { redirect_to root_path, notice: 'Prospective user was successfully created.' }
+        format.html { redirect_to action: 'thanks' }
         format.json { render action: 'show', status: :created, location: @prospective_user }
       else
         format.html { render action: 'new' }
         format.json { render json: @prospective_user.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def thanks
   end
 
   private
