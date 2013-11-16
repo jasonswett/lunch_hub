@@ -1,14 +1,17 @@
 LunchHub::Application.routes.draw do
+  resources :addresses
+
   resources :groups
 
   devise_for :users
   resources :prospective_users, only: [:new, :create]
+  get '/prospective_users/thanks', to: 'prospective_users#thanks'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'static_pages#index'
+  root 'prospective_users#new'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

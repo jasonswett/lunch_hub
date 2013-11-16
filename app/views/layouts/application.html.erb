@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html ng-app="lunchHub">
+<html ng-app="lunchHub" ng-controller="titleCtrl">
 <head>
-  <title>Lunch Hub</title>
-  <%= stylesheet_link_tag    "application", media: "all" %>
-  <%= javascript_include_tag "application", controller_name %>
-  <%= csrf_meta_tags %>
+  <title>{{ Page.title() }}</title>
+  <%= render 'layouts/head' %>
 </head>
 <body>
 
+<%= render "layouts/nav" %>
+
 <div class="container">
-  <h1>Lunch Hub</h1>
+  <h1 ng-controller="titleCtrl">{{ Page.title() }}</h1>
   <div ng-view>
     <%= yield %>
   </div>

@@ -11,10 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131030190152) do
+ActiveRecord::Schema.define(version: 20131115165603) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "address", force: true do |t|
+    t.string   "line1",      default: ""
+    t.string   "line2",      default: ""
+    t.string   "city",       default: ""
+    t.integer  "state_id"
+    t.string   "zip",        default: ""
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "address", ["line1", "line2", "city", "state_id", "zip"], name: "index_address_on_line1_and_line2_and_city_and_state_id_and_zip", unique: true, using: :btree
+  add_index "address", ["state_id"], name: "index_address_on_state_id", using: :btree
 
   create_table "group", force: true do |t|
     t.string   "name",                     null: false
@@ -31,6 +44,15 @@ ActiveRecord::Schema.define(version: 20131030190152) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "state", force: true do |t|
+    t.string   "name",         default: ""
+    t.string   "abbreviation", default: ""
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "state", ["name"], name: "index_state_on_name", unique: true, using: :btree
 
   create_table "user", force: true do |t|
     t.string   "email",                  default: "", null: false
