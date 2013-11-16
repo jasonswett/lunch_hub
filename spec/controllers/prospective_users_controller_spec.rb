@@ -20,6 +20,8 @@ require 'spec_helper'
 
 describe ProspectiveUsersController do
 
+  before(:each) { sign_in nil }
+
   # This should return the minimal set of attributes required to create a valid
   # ProspectiveUser. As you add validations to ProspectiveUser, be sure to
   # adjust the attributes here as well.
@@ -51,9 +53,9 @@ describe ProspectiveUsersController do
         assigns(:prospective_user).should be_persisted
       end
 
-      it "redirects to the root route" do
+      it "redirects to the thanks page" do
         post :create, {:prospective_user => valid_attributes}, valid_session
-        response.should redirect_to(root_path)
+        response.should redirect_to(prospective_users_thanks_path)
       end
     end
 

@@ -20,6 +20,8 @@ require 'spec_helper'
 
 describe GroupsController do
 
+  before(:each) { sign_in }
+
   # This should return the minimal set of attributes required to create a valid
   # Group. As you add validations to Group, be sure to
   # adjust the attributes here as well.
