@@ -32,6 +32,8 @@ group :doc do
   gem 'sdoc', require: false
 end
 
+gem "rails_12factor", "~> 0.0.2"
+
 gem "rspec-rails", "~> 2.14.0"
 gem "capybara", "~> 2.1.0"
 gem "database_cleaner", "~> 1.2.0"
