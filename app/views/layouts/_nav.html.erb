@@ -12,8 +12,11 @@
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#groups">Groups</a></li>
-        <li class="active"><a href="#addresses">Addresses</a></li>
+        <li><a href="#groups">Groups</a></li>
+        <li><a href="#addresses">Addresses</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><%= link_to('Sign Out', destroy_user_session_path, method: :delete) %></li>
       </ul>
     </div>
   </div><!-- /container -->
