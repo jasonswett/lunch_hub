@@ -55,7 +55,7 @@ describe ProspectiveUsersController do
 
       it "redirects to the thanks page" do
         post :create, {:prospective_user => valid_attributes}, valid_session
-        response.should redirect_to(prospective_users_thanks_path)
+        response.should redirect_to(thanks_prospective_users_path)
       end
     end
 

@@ -32,23 +32,13 @@ group :doc do
   gem 'sdoc', require: false
 end
 
+group :test do
+  gem "factory_girl_rails", "~> 4.3.0"
+  gem "rspec-rails", "~> 2.14.0"
+  gem "capybara", "~> 2.1.0"
+  gem "database_cleaner", "~> 1.2.0"
+end
+
 gem "rails_12factor", "~> 0.0.2"
-
-gem "rspec-rails", "~> 2.14.0"
-gem "capybara", "~> 2.1.0"
-gem "database_cleaner", "~> 1.2.0"
-
 gem 'anjlab-bootstrap-rails', require: 'bootstrap-rails', github: 'anjlab/bootstrap-rails'
 gem "devise", "~> 3.1.1"
-
-# Use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
-
-# Use unicorn as the app server
-# gem 'unicorn'
-
-# Use Capistrano for deployment
-# gem 'capistrano', group: :development
-
-# Use debugger
-# gem 'debugger', group: [:development, :test]

@@ -1,5 +1,5 @@
 class ProspectiveUsersController < ApplicationController
-  skip_before_filter :authenticate_user!
+  skip_before_filter :redirect_to_launch_notification_page, :authenticate_user!
   layout 'no_angular'
 
   # GET /prospective_users/new
