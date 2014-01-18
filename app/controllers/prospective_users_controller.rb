@@ -1,7 +1,6 @@
 class ProspectiveUsersController < ApplicationController
-  skip_before_filter :lock_out
   skip_before_filter :authenticate_user!
-  layout 'beta'
+  layout 'no_angular'
 
   # GET /prospective_users/new
   def new

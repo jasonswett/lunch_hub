@@ -3,9 +3,13 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :null_session
   before_filter :authenticate_user!
-  before_filter :lock_out
+  layout :determine_layout
 
-  def lock_out
-    redirect_to root_path unless user_signed_in?
+  def determine_layout
+    if devise_controller?
+      "no_angular"
+    else
+      "application"
+    end
   end
 end
