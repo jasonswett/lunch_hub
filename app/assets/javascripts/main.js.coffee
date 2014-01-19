@@ -1,30 +1,30 @@
-@lunchHub = angular.module('lunchHub', [])
+@lunchHub = angular.module("lunchHub", ["ngRoute"])
 
-@lunchHub.config(['$routeProvider', ($routeProvider) ->
+@lunchHub.config(["$routeProvider", ($routeProvider) ->
   $routeProvider.
-    when('/addresses', {
-      templateUrl: '../templates/addresses/index.html',
-      controller: 'AddressIndexCtrl'
+    when("/addresses", {
+      templateUrl: "../templates/addresses/index.html",
+      controller: "AddressIndexCtrl"
     }).
-    when('/groups', {
-      templateUrl: '../templates/groups/index.html',
-      controller: 'GroupIndexCtrl'
+    when("/groups", {
+      templateUrl: "../templates/groups/index.html",
+      controller: "GroupIndexCtrl"
     }).
-    when('/groups/new', {
-      templateUrl: '../templates/groups/new.html',
-      controller: 'GroupNewCtrl'
+    when("/groups/new", {
+      templateUrl: "../templates/groups/new.html",
+      controller: "GroupNewCtrl"
     }).
-    when('/groups/:id', {
-      templateUrl: '../templates/groups/show.html',
-      controller: 'GroupShowCtrl'
+    when("/groups/:id", {
+      templateUrl: "../templates/groups/show.html",
+      controller: "GroupShowCtrl"
     }).
     otherwise({
-      templateUrl: '../templates/home.html',
-      controller: 'HomeCtrl'
+      templateUrl: "../templates/home.html",
+      controller: "HomeCtrl"
     })
 ])
 
-@lunchHub.config(['$httpProvider', ($httpProvider) ->
+@lunchHub.config(["$httpProvider", ($httpProvider) ->
   authToken = $("meta[name=\"csrf-token\"]").attr("content")
   $httpProvider.defaults.headers.common["X-CSRF-TOKEN"] = authToken
 ])
