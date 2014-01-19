@@ -1,0 +1,21 @@
+{
+  "name": "lunch_hub",
+  "version": "0.0.0",
+  "homepage": "http://www.lunchhub.com/",
+  "authors": [
+    "Jason Swett <jason@benfranklinlabs.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.0.3",
+    "jquery-ui": "~1.10.3",
+    "jquery-ujs": "https://github.com/rails/jquery-ujs.git"
+  }
+}
