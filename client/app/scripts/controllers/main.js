@@ -15,5 +15,5 @@ angular.module('lunchHubApp')
       'Karma'
     ];
 
-    var group = Group.query();
+    $scope.groups = Group.query();
   }]);
