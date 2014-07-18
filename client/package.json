@@ -1,7 +1,9 @@
 {
   "name": "lunchhub",
   "version": "0.0.0",
-  "dependencies": {},
+  "dependencies": {
+    "source-map": "^0.1.37"
+  },
   "devDependencies": {
     "grunt": "^0.4.1",
     "grunt-autoprefixer": "^0.7.3",
