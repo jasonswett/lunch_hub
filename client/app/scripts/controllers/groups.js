@@ -8,6 +8,6 @@
  * Controller of the lunchHubApp
  */
 angular.module('lunchHubApp')
-  .controller('GroupsCtrl', ['$scope', '$routeParams', 'Group', function ($scope, $routeParams, Group) {
+  .controller('GroupsCtrl', ['$scope', 'Group', function ($scope, Group) {
     $scope.groups = Group.query();
   }]);
