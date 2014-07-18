@@ -8,10 +8,12 @@
  * Controller of the lunchHubApp
  */
 angular.module('lunchHubApp')
-  .controller('MainCtrl', function ($scope) {
+  .controller('MainCtrl', ['$scope', '$routeParams', 'Group', function ($scope, $routeParams, Group) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
     ];
-  });
+
+    var group = Group.query();
+  }]);
