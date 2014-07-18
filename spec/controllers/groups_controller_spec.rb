@@ -76,11 +76,6 @@ describe GroupsController do
         assigns(:group).should be_a(Group)
         assigns(:group).should be_persisted
       end
-
-      it "redirects to the created group" do
-        post :create, {:group => valid_attributes}, valid_session
-        response.should redirect_to(Group.last)
-      end
     end
 
     describe "with invalid params" do
@@ -89,13 +84,6 @@ describe GroupsController do
         Group.any_instance.stub(:save).and_return(false)
         post :create, {:group => { "name" => "invalid value" }}, valid_session
         assigns(:group).should be_a_new(Group)
-      end
-
-      it "re-renders the 'new' template" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        Group.any_instance.stub(:save).and_return(false)
-        post :create, {:group => { "name" => "invalid value" }}, valid_session
-        response.should render_template("new")
       end
     end
   end
@@ -117,12 +105,6 @@ describe GroupsController do
         put :update, {:id => group.to_param, :group => valid_attributes}, valid_session
         assigns(:group).should eq(group)
       end
-
-      it "redirects to the group" do
-        group = Group.create! valid_attributes
-        put :update, {:id => group.to_param, :group => valid_attributes}, valid_session
-        response.should redirect_to(group)
-      end
     end
 
     describe "with invalid params" do
@@ -133,14 +115,6 @@ describe GroupsController do
         put :update, {:id => group.to_param, :group => { "name" => "invalid value" }}, valid_session
         assigns(:group).should eq(group)
       end
-
-      it "re-renders the 'edit' template" do
-        group = Group.create! valid_attributes
-        # Trigger the behavior that occurs when invalid params are submitted
-        Group.any_instance.stub(:save).and_return(false)
-        put :update, {:id => group.to_param, :group => { "name" => "invalid value" }}, valid_session
-        response.should render_template("edit")
-      end
     end
   end
 
@@ -150,12 +124,6 @@ describe GroupsController do
       expect {
         delete :destroy, {:id => group.to_param}, valid_session
       }.to change(Group, :count).by(-1)
-    end
-
-    it "redirects to the group list" do
-      group = Group.create! valid_attributes
-      delete :destroy, {:id => group.to_param}, valid_session
-      response.should redirect_to(groups_url)
     end
   end
 

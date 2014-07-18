@@ -90,11 +90,6 @@ describe AddressesController do
         assigns(:address).should be_a(Address)
         assigns(:address).should be_persisted
       end
-
-      it "redirects to the created address" do
-        post :create, {:address => valid_attributes}, valid_session
-        response.should redirect_to(Address.last)
-      end
     end
 
     describe "with invalid params" do
@@ -103,13 +98,6 @@ describe AddressesController do
         Address.any_instance.stub(:save).and_return(false)
         post :create, {:address => { "line1" => "invalid value" }}, valid_session
         assigns(:address).should be_a_new(Address)
-      end
-
-      it "re-renders the 'new' template" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        Address.any_instance.stub(:save).and_return(false)
-        post :create, {:address => { "line1" => "invalid value" }}, valid_session
-        response.should render_template("new")
       end
     end
   end
@@ -131,12 +119,6 @@ describe AddressesController do
         put :update, {:id => address.to_param, :address => valid_attributes}, valid_session
         assigns(:address).should eq(address)
       end
-
-      it "redirects to the address" do
-        address = Address.create! valid_attributes
-        put :update, {:id => address.to_param, :address => valid_attributes}, valid_session
-        response.should redirect_to(address)
-      end
     end
 
     describe "with invalid params" do
@@ -147,14 +129,6 @@ describe AddressesController do
         put :update, {:id => address.to_param, :address => { "line1" => "invalid value" }}, valid_session
         assigns(:address).should eq(address)
       end
-
-      it "re-renders the 'edit' template" do
-        address = Address.create! valid_attributes
-        # Trigger the behavior that occurs when invalid params are submitted
-        Address.any_instance.stub(:save).and_return(false)
-        put :update, {:id => address.to_param, :address => { "line1" => "invalid value" }}, valid_session
-        response.should render_template("edit")
-      end
     end
   end
 
@@ -164,12 +138,6 @@ describe AddressesController do
       expect {
         delete :destroy, {:id => address.to_param}, valid_session
       }.to change(Address, :count).by(-1)
-    end
-
-    it "redirects to the address list" do
-      address = Address.create! valid_attributes
-      delete :destroy, {:id => address.to_param}, valid_session
-      response.should redirect_to(addresses_url)
     end
   end
 

@@ -52,11 +52,6 @@ describe ProspectiveUsersController do
         assigns(:prospective_user).should be_a(ProspectiveUser)
         assigns(:prospective_user).should be_persisted
       end
-
-      it "redirects to the thanks page" do
-        post :create, {:prospective_user => valid_attributes}, valid_session
-        response.should redirect_to(prospective_users_thanks_path)
-      end
     end
 
     describe "with invalid params" do
@@ -65,13 +60,6 @@ describe ProspectiveUsersController do
         ProspectiveUser.any_instance.stub(:save).and_return(false)
         post :create, {:prospective_user => { "first_name" => "invalid value" }}, valid_session
         assigns(:prospective_user).should be_a_new(ProspectiveUser)
-      end
-
-      it "re-renders the 'new' template" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        ProspectiveUser.any_instance.stub(:save).and_return(false)
-        post :create, {:prospective_user => { "first_name" => "invalid value" }}, valid_session
-        response.should render_template("new")
       end
     end
   end
