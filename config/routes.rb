@@ -6,5 +6,5 @@ LunchHub::Application.routes.draw do
   resources :prospective_users, only: [:new, :create]
   get '/prospective_users/thanks', to: 'prospective_users#thanks'
 
-  root 'prospective_users#new'
+  root 'groups#index'
 end
