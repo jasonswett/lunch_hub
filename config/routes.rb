@@ -1,6 +1,8 @@
 LunchHub::Application.routes.draw do
-  resources :addresses
-  resources :groups
+  namespace :api do
+    resources :addresses
+    resources :groups
+  end
 
   devise_for :users
   resources :prospective_users, only: [:new, :create]
