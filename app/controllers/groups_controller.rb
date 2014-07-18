@@ -1,10 +1,11 @@
-class Api::GroupsController < ApplicationController
+class GroupsController < ApplicationController
   before_action :set_group, only: [:show, :edit, :update, :destroy]
 
   # GET /groups
   # GET /groups.json
   def index
     @groups = Group.all
+    render json: @groups
   end
 
   # GET /groups/1

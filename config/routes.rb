@@ -1,5 +1,5 @@
 LunchHub::Application.routes.draw do
-  namespace :api do
+  scope '/api' do
     resources :addresses
     resources :groups
   end
