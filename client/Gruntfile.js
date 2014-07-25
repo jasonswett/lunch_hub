@@ -36,6 +36,12 @@ module.exports = function (grunt) {
         options: {
           async: true
         }
+      },
+      startWebdriverManagerServer: {
+        command: 'node_modules/protractor/bin/webdriver-manager start',
+        options: {
+          async: true
+        }
       }
     },
 
@@ -451,6 +457,7 @@ module.exports = function (grunt) {
     'clean:server',
     'wiredep',
     'shell:startRailsTestServer',
+    'shell:startWebdriverManagerServer',
     'concurrent:server',
     'autoprefixer',
     'configureProxies',
