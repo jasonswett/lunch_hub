@@ -36,9 +36,6 @@ module.exports = function (grunt) {
         options: {
           async: true
         }
-      },
-      resetRailsTestDatabase: {
-        command: 'rake db:reset RAILS_ENV=test'
       }
     },
 
