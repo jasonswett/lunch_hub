@@ -30,6 +30,15 @@ module.exports = function (grunt) {
         options: {
           async: true
         }
+      },
+      startRailsTestServer: {
+        command: 'rails server -e test',
+        options: {
+          async: true
+        }
+      },
+      resetRailsTestDatabase: {
+        command: 'rake db:reset RAILS_ENV=test'
       }
     },
 
@@ -427,8 +436,8 @@ module.exports = function (grunt) {
     grunt.task.run([
       'clean:server',
       'wiredep',
-      'concurrent:server',
       'shell:startRailsServer',
+      'concurrent:server',
       'autoprefixer',
       'configureProxies',
       'connect:livereload',
@@ -443,11 +452,13 @@ module.exports = function (grunt) {
 
   grunt.registerTask('test', [
     'clean:server',
-    'concurrent:test',
+    'wiredep',
+    'shell:startRailsTestServer',
+    'concurrent:server',
     'autoprefixer',
     'configureProxies',
-    'connect:test',
-    'karma'
+    'connect:livereload',
+    'watch'
   ]);
 
   grunt.registerTask('build', [
