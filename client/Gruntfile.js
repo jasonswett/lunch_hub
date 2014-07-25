@@ -24,6 +24,22 @@ module.exports = function (grunt) {
   // Define the configuration for all the tasks
   grunt.initConfig({
 
+    protractor: {
+      options: {
+        keepAlive: true, // If false, the grunt process stops when the test fails.
+        noColor: false, // If true, protractor will not use colors in its output.
+        args: {
+          // Arguments passed to the command
+        }
+      },
+      run: {
+        options: {
+          configFile: "protractor_conf.js", // Target-specific config file
+          args: {} // Target-specific arguments
+        }
+      },
+    },
+
     shell: {
       startRailsServer: {
         command: 'rails server',
@@ -36,6 +52,9 @@ module.exports = function (grunt) {
         options: {
           async: true
         }
+      },
+      cleanRailsTestDatabase: {
+        command: 'rake db:reset RAILS_ENV=test',
       },
       startWebdriverManagerServer: {
         command: 'node_modules/protractor/bin/webdriver-manager start',
@@ -129,18 +148,36 @@ module.exports = function (grunt) {
       test: {
         options: {
           port: 9001,
-          middleware: function (connect) {
-            return [
+          middleware: function (connect, options) {
+            if (!Array.isArray(options.base)) {
+              options.base = [options.base];
+            }
+
+            // Setup the proxy
+            var middlewares = [
+              require('grunt-connect-proxy/lib/utils').proxyRequest,
               connect.static('.tmp'),
-              connect.static('test'),
               connect().use(
                 '/bower_components',
                 connect.static('./bower_components')
               ),
               connect.static(appConfig.app)
             ];
+
+            // Make directory browse-able.
+            var directory = options.directory || options.base[options.base.length - 1];
+            middlewares.push(connect.directory(directory));
+
+            return middlewares;
           }
-        }
+        },
+        proxies: [
+          {
+            context: '/api',
+            host: 'localhost',
+            port: 3000
+          }
+        ],
       },
       dist: {
         options: {
@@ -456,13 +493,13 @@ module.exports = function (grunt) {
   grunt.registerTask('test', [
     'clean:server',
     'wiredep',
+    'shell:cleanRailsTestDatabase',
     'shell:startRailsTestServer',
-    'shell:startWebdriverManagerServer',
-    'concurrent:server',
+    'concurrent:test',
     'autoprefixer',
     'configureProxies',
-    'connect:livereload',
-    'watch'
+    'connect:test',
+    'protractor:run'
   ]);
 
   grunt.registerTask('build', [
@@ -490,4 +527,5 @@ module.exports = function (grunt) {
 
   grunt.loadNpmTasks('grunt-connect-proxy');
   grunt.loadNpmTasks('grunt-shell-spawn');
+  grunt.loadNpmTasks('grunt-protractor-runner');
 };
