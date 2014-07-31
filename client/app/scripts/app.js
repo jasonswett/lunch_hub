@@ -14,7 +14,8 @@ var app = angular.module('lunchHubApp', [
   'ngResource',
   'ngRoute',
   'ngSanitize',
-  'ngTouch'
+  'ngTouch',
+  'rails'
 ]);
 
 app.config(function ($routeProvider) {
@@ -32,9 +33,6 @@ app.config(function ($routeProvider) {
     });
 });
 
-app.factory('Group', ['$resource', function($resource) {
-  return $resource('/api/groups/:id.json', null,
-    {
-      'update': { method:'PUT' }
-    });
+app.factory('Group', ['railsResourceFactory', function (railsResourceFactory) {
+  return railsResourceFactory({ url: '/api/groups', name: 'group' });
 }]);
