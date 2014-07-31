@@ -18,11 +18,58 @@ module.exports = function (grunt) {
   // Configurable paths for the application
   var appConfig = {
     app: require('./bower.json').appPath || 'app',
-    dist: 'dist'
+    dist: '../public'
   };
 
   // Define the configuration for all the tasks
   grunt.initConfig({
+
+    protractor: {
+      options: {
+        keepAlive: true, // If false, the grunt process stops when the test fails.
+        noColor: false, // If true, protractor will not use colors in its output.
+        args: {
+          // Arguments passed to the command
+        }
+      },
+      run: {
+        options: {
+          configFile: "protractor_conf.js", // Target-specific config file
+          args: {} // Target-specific arguments
+        }
+      },
+    },
+
+    rails: {
+      options: {
+      },
+      startDevelopmentServer: {
+      }
+    },
+
+    shell: {
+      startRailsServer: {
+        command: 'rails server',
+        options: {
+          async: true
+        }
+      },
+      startRailsTestServer: {
+        command: 'rails server -e test',
+        options: {
+          async: true
+        }
+      },
+      cleanRailsTestDatabase: {
+        command: 'rake db:reset RAILS_ENV=test',
+      },
+      startWebdriverManagerServer: {
+        command: 'node_modules/protractor/bin/webdriver-manager start',
+        options: {
+          async: true
+        }
+      }
+    },
 
     // Project settings
     yeoman: appConfig,
@@ -108,18 +155,36 @@ module.exports = function (grunt) {
       test: {
         options: {
           port: 9001,
-          middleware: function (connect) {
-            return [
+          middleware: function (connect, options) {
+            if (!Array.isArray(options.base)) {
+              options.base = [options.base];
+            }
+
+            // Setup the proxy
+            var middlewares = [
+              require('grunt-connect-proxy/lib/utils').proxyRequest,
               connect.static('.tmp'),
-              connect.static('test'),
               connect().use(
                 '/bower_components',
                 connect.static('./bower_components')
               ),
               connect.static(appConfig.app)
             ];
+
+            // Make directory browse-able.
+            var directory = options.directory || options.base[options.base.length - 1];
+            middlewares.push(connect.directory(directory));
+
+            return middlewares;
           }
-        }
+        },
+        proxies: [
+          {
+            context: '/api',
+            host: 'localhost',
+            port: 3000
+          }
+        ],
       },
       dist: {
         options: {
@@ -418,6 +483,7 @@ module.exports = function (grunt) {
     grunt.task.run([
       'clean:server',
       'wiredep',
+      'rails:startDevelopmentServer',
       'concurrent:server',
       'autoprefixer',
       'configureProxies',
@@ -433,11 +499,14 @@ module.exports = function (grunt) {
 
   grunt.registerTask('test', [
     'clean:server',
+    'wiredep',
+    'shell:cleanRailsTestDatabase',
+    'shell:startRailsTestServer',
     'concurrent:test',
     'autoprefixer',
     'configureProxies',
     'connect:test',
-    'karma'
+    'protractor:run'
   ]);
 
   grunt.registerTask('build', [
@@ -464,4 +533,7 @@ module.exports = function (grunt) {
   ]);
 
   grunt.loadNpmTasks('grunt-connect-proxy');
+  grunt.loadNpmTasks('grunt-shell-spawn');
+  grunt.loadNpmTasks('grunt-protractor-runner');
+  grunt.loadNpmTasks('grunt-rails-server');
 };
