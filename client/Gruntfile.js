@@ -40,6 +40,13 @@ module.exports = function (grunt) {
       },
     },
 
+    rails: {
+      options: {
+      },
+      startDevelopmentServer: {
+      }
+    },
+
     shell: {
       startRailsServer: {
         command: 'rails server',
@@ -476,7 +483,7 @@ module.exports = function (grunt) {
     grunt.task.run([
       'clean:server',
       'wiredep',
-      'shell:startRailsServer',
+      'rails:startDevelopmentServer',
       'concurrent:server',
       'autoprefixer',
       'configureProxies',
@@ -528,4 +535,5 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-connect-proxy');
   grunt.loadNpmTasks('grunt-shell-spawn');
   grunt.loadNpmTasks('grunt-protractor-runner');
+  grunt.loadNpmTasks('grunt-rails-server');
 };
