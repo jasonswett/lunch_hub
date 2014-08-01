@@ -4,7 +4,8 @@
   "description": "The website you can literally eat.",
   "dependencies": {
     "source-map": "^0.1.37",
-    "load-grunt-tasks": "^0.6.0"
+    "load-grunt-tasks": "^0.6.0",
+    "time-grunt": "^0.3.1"
   },
   "devDependencies": {
     "grunt": "^0.4.1",
@@ -32,8 +33,7 @@
     "grunt-svgmin": "^0.4.0",
     "grunt-usemin": "^2.1.1",
     "grunt-wiredep": "^1.7.0",
-    "jshint-stylish": "^0.2.0",
-    "time-grunt": "^0.3.1"
+    "jshint-stylish": "^0.2.0"
   },
   "engines": {
     "node": ">=0.10.0"
