@@ -532,6 +532,8 @@ module.exports = function (grunt) {
     'build'
   ]);
 
+  grunt.registerTask('heroku:production', 'build');
+
   grunt.loadNpmTasks('grunt-connect-proxy');
   grunt.loadNpmTasks('grunt-shell-spawn');
   grunt.loadNpmTasks('grunt-protractor-runner');
