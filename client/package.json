@@ -5,9 +5,7 @@
   "dependencies": {
     "source-map": "^0.1.37",
     "load-grunt-tasks": "^0.6.0",
-    "time-grunt": "^0.3.1"
-  },
-  "devDependencies": {
+    "time-grunt": "^0.3.1",
     "grunt": "^0.4.1",
     "grunt-autoprefixer": "^0.7.3",
     "grunt-concurrent": "^0.5.0",
