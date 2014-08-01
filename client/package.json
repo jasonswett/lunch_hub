@@ -1,8 +1,10 @@
 {
   "name": "lunchhub",
   "version": "0.0.0",
+  "description": "The website you can literally eat.",
   "dependencies": {
-    "source-map": "^0.1.37"
+    "source-map": "^0.1.37",
+    "load-grunt-tasks": "^0.6.0"
   },
   "devDependencies": {
     "grunt": "^0.4.1",
@@ -31,7 +33,6 @@
     "grunt-usemin": "^2.1.1",
     "grunt-wiredep": "^1.7.0",
     "jshint-stylish": "^0.2.0",
-    "load-grunt-tasks": "^0.6.0",
     "time-grunt": "^0.3.1"
   },
   "engines": {
