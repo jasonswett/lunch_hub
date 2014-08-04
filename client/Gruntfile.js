@@ -40,26 +40,7 @@ module.exports = function (grunt) {
       },
     },
 
-    rails: {
-      options: {
-      },
-      startDevelopmentServer: {
-      }
-    },
-
     shell: {
-      startRailsServer: {
-        command: 'rails server',
-        options: {
-          async: true
-        }
-      },
-      startRailsTestServer: {
-        command: 'rails server -e test',
-        options: {
-          async: true
-        }
-      },
       cleanRailsTestDatabase: {
         command: 'rake db:reset RAILS_ENV=test',
       },
@@ -178,13 +159,14 @@ module.exports = function (grunt) {
             return middlewares;
           }
         },
+        appendProxies: false,
         proxies: [
           {
             context: '/api',
             host: 'localhost',
-            port: 3000
+            port: 3001
           }
-        ],
+        ]
       },
       dist: {
         options: {
@@ -483,7 +465,7 @@ module.exports = function (grunt) {
     grunt.task.run([
       'clean:server',
       'wiredep',
-      'rails:startDevelopmentServer',
+      'railsServer:development',
       'concurrent:server',
       'autoprefixer',
       'configureProxies',
@@ -501,10 +483,10 @@ module.exports = function (grunt) {
     'clean:server',
     'wiredep',
     'shell:cleanRailsTestDatabase',
-    'shell:startRailsTestServer',
+    'railsServer:test',
     'concurrent:test',
     'autoprefixer',
-    'configureProxies',
+    'configureProxies:test',
     'connect:test',
     'protractor:run'
   ]);
