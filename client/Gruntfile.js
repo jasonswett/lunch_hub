@@ -159,13 +159,14 @@ module.exports = function (grunt) {
             return middlewares;
           }
         },
+        appendProxies: false,
         proxies: [
           {
             context: '/api',
             host: 'localhost',
-            port: 3000
+            port: 3001
           }
-        ],
+        ]
       },
       dist: {
         options: {
@@ -485,7 +486,7 @@ module.exports = function (grunt) {
     'railsServer:test',
     'concurrent:test',
     'autoprefixer',
-    'configureProxies',
+    'configureProxies:test',
     'connect:test',
     'protractor:run'
   ]);
