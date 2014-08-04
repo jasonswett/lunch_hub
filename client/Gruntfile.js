@@ -42,8 +42,6 @@ module.exports = function (grunt) {
 
     rails: {
       options: {
-      },
-      startDevelopmentServer: {
       }
     },
 
@@ -483,7 +481,7 @@ module.exports = function (grunt) {
     grunt.task.run([
       'clean:server',
       'wiredep',
-      'rails:startDevelopmentServer',
+      'rails:start',
       'concurrent:server',
       'autoprefixer',
       'configureProxies',
