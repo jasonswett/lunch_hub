@@ -37,6 +37,7 @@ end
 gem 'rails_12factor'
 gem 'devise'
 gem 'devise_token_auth'
+gem 'omniauth'
 
 group :test do
   gem "rspec-rails"
