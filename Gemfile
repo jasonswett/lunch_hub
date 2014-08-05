@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.0'
+gem 'rails', '4.1.4'
 
 gem 'rails-api'
 
@@ -34,8 +34,9 @@ group :doc do
   gem 'sdoc', require: false
 end
 
-gem "rails_12factor"
-gem "devise"
+gem 'rails_12factor'
+gem 'devise'
+gem 'devise_token_auth'
 
 group :test do
   gem "rspec-rails"
