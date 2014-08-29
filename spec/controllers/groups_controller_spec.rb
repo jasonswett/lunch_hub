@@ -48,21 +48,6 @@ describe GroupsController do
     end
   end
 
-  describe "GET new" do
-    it "assigns a new group as @group" do
-      get :new, {}, valid_session
-      assigns(:group).should be_a_new(Group)
-    end
-  end
-
-  describe "GET edit" do
-    it "assigns the requested group as @group" do
-      group = Group.create! valid_attributes
-      get :edit, {:id => group.to_param}, valid_session
-      assigns(:group).should eq(group)
-    end
-  end
-
   describe "POST create" do
     describe "with valid params" do
       it "creates a new Group" do
