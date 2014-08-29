@@ -33,4 +33,6 @@ LunchHub::Application.configure do
 
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
+
+  config.gruntfile_location = "client/Gruntfile.js"
 end

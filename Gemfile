@@ -42,5 +42,7 @@ gem 'omniauth'
 group :test do
   gem "rspec-rails"
   gem "capybara"
+  gem "selenium-webdriver"
   gem "database_cleaner"
+  gem "compass"
 end
