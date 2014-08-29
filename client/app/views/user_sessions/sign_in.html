@@ -1,0 +1,13 @@
+<form ng-submit="submitLogin(loginForm)" role="form" ng-init="loginForm = {}">
+  <div class="form-group">
+    <label>email</label>
+    <input type="email" name="email" ng-model="loginForm.email" required="required" class="form-control"/>
+  </div>
+
+  <div class="form-group">
+    <label>password</label>
+    <input type="password" name="password" ng-model="loginForm.password" required="required" class="form-control"/>
+  </div>
+
+  <button type="submit" class="btn btn-primary btn-lg">Sign in</button>
+</form>

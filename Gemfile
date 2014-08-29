@@ -36,10 +36,14 @@ gem 'devise'
 gem 'devise_token_auth'
 gem 'omniauth'
 
+group :development do
+  gem 'letter_opener'
+end
+
 group :test do
-  gem "rspec-rails"
-  gem "capybara"
-  gem "selenium-webdriver"
-  gem "database_cleaner"
-  gem "compass"
+  gem 'rspec-rails'
+  gem 'capybara'
+  gem 'selenium-webdriver'
+  gem 'database_cleaner'
+  gem 'compass'
 end

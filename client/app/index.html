@@ -25,6 +25,8 @@
         <ul class="nav nav-pills pull-right">
           <li class="active"><a ng-href="#">Home</a></li>
           <li><a ng-href="#/groups">Groups</a></li>
+          <li ng-show="!user.id"><a ng-href="#/sign_in">Sign in</a></li>
+          <li ng-show="user.id"><a ng-click='signOut()'>Sign out</a></li>
         </ul>
         <h3 class="text-muted">Lunch Hub</h3>
       </div>
@@ -87,6 +89,7 @@
         <script src="scripts/app.js"></script>
         <script src="scripts/controllers/main.js"></script>
         <script src="scripts/controllers/groups.js"></script>
+        <script src="scripts/controllers/user_sessions.js"></script>
         <!-- endbuild -->
 </body>
 </html>

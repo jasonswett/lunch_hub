@@ -30,7 +30,7 @@ app.config(function($routeProvider) {
       controller: 'GroupsCtrl'
     })
     .when('/sign_in', {
-      semplateUrl: 'views/user_sessions/sign_in.html',
+      templateUrl: 'views/user_sessions/sign_in.html',
       controller: 'UserSessionsCtrl'
     })
     .otherwise({
