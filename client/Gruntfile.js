@@ -40,18 +40,6 @@ module.exports = function (grunt) {
       },
     },
 
-    shell: {
-      cleanRailsTestDatabase: {
-        command: 'rake db:reset RAILS_ENV=test',
-      },
-      startWebdriverManagerServer: {
-        command: 'node_modules/protractor/bin/webdriver-manager start',
-        options: {
-          async: true
-        }
-      }
-    },
-
     // Project settings
     yeoman: appConfig,
 
@@ -482,7 +470,6 @@ module.exports = function (grunt) {
   grunt.registerTask('test', [
     'clean:server',
     'wiredep',
-    'shell:cleanRailsTestDatabase',
     'railsServer:test',
     'concurrent:test',
     'autoprefixer',
@@ -517,7 +504,6 @@ module.exports = function (grunt) {
   grunt.registerTask('heroku:production', 'build');
 
   grunt.loadNpmTasks('grunt-connect-proxy');
-  grunt.loadNpmTasks('grunt-shell-spawn');
   grunt.loadNpmTasks('grunt-protractor-runner');
   grunt.loadNpmTasks('grunt-rails-server');
 };
