@@ -15,10 +15,11 @@ var app = angular.module('lunchHubApp', [
   'ngRoute',
   'ngSanitize',
   'ngTouch',
-  'rails'
+  'rails',
+  'ng-token-auth'
 ]);
 
-app.config(function ($routeProvider) {
+app.config(function($routeProvider) {
   $routeProvider
     .when('/', {
       templateUrl: 'views/main.html',
@@ -28,9 +29,19 @@ app.config(function ($routeProvider) {
       templateUrl: 'views/groups.html',
       controller: 'GroupsCtrl'
     })
+    .when('/sign_in', {
+      semplateUrl: 'views/user_sessions/sign_in.html',
+      controller: 'UserSessionsCtrl'
+    })
     .otherwise({
       redirectTo: '/'
     });
+});
+
+app.config(function($authProvider) {
+  $authProvider.configure({
+    apiUrl: '/api'
+  });
 });
 
 app.factory('Group', ['railsResourceFactory', function (railsResourceFactory) {

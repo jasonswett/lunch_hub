@@ -49,10 +49,10 @@ class DeviseTokenAuthCreateUsers < ActiveRecord::Migration
       t.timestamps
     end
 
-    add_index :users, :email
-    add_index :users, :uid,                  :unique => true
-    add_index :users, :reset_password_token, :unique => true
-    # add_index :users, :confirmation_token,   :unique => true
-    # add_index :users, :unlock_token,         :unique => true
+    add_index :user, :email
+    add_index :user, :uid,                  :unique => true
+    add_index :user, :reset_password_token, :unique => true
+    # add_index :user, :confirmation_token,   :unique => true
+    # add_index :user, :unlock_token,         :unique => true
   end
 end

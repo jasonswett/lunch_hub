@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131115165603) do
+ActiveRecord::Schema.define(version: 20140805144952) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,21 +55,34 @@ ActiveRecord::Schema.define(version: 20131115165603) do
   add_index "state", ["name"], name: "index_state_on_name", unique: true, using: :btree
 
   create_table "user", force: true do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "email"
+    t.string   "encrypted_password",          default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
+    t.string   "reset_password_redirect_url"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",               default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string   "confirm_success_url"
+    t.string   "unconfirmed_email"
+    t.string   "name"
+    t.string   "nickname"
+    t.string   "image"
+    t.string   "provider"
+    t.string   "uid",                         default: "", null: false
+    t.text     "tokens"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "user", ["email"], name: "index_user_on_email", unique: true, using: :btree
+  add_index "user", ["email"], name: "index_user_on_email", using: :btree
   add_index "user", ["reset_password_token"], name: "index_user_on_reset_password_token", unique: true, using: :btree
+  add_index "user", ["uid"], name: "index_user_on_uid", unique: true, using: :btree
 
 end
