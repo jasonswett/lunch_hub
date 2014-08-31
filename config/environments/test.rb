@@ -35,4 +35,6 @@ LunchHub::Application.configure do
   config.active_support.deprecation = :stderr
 
   config.gruntfile_location = "client/Gruntfile.js"
+
+  config.action_mailer.default_url_options = { host: "localhost:3000" }
 end
