@@ -40,6 +40,13 @@ module.exports = function (grunt) {
       },
     },
 
+    uglify: {
+      options: {
+        beautify: true,
+        mangle: true
+      }
+    },
+
     // Project settings
     yeoman: appConfig,
 
