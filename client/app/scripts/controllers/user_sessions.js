@@ -8,11 +8,11 @@
  * Controller of the lunchHubApp
  */
 angular.module('lunchHubApp')
-  .controller('UserSessionsCtrl', ['$rootScope', '$location', function ($rootScope, $location) {
+  .controller('UserSessionsCtrl', ['$scope', '$rootScope', '$location', function ($scope, $rootScope, $location) {
     $rootScope.$on('auth:login-success', function() {
       $location.path('/');
     });
     $rootScope.$on('auth:login-error', function(ev, reason) {
-      window.alert('error: ' + reason.errors[0]);
+      $scope.error = reason.errors[0];
     });
   }]);
