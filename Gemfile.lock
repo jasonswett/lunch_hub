@@ -183,6 +183,7 @@ DEPENDENCIES
   jbuilder (~> 1.2)
   jquery-rails
   letter_opener
+  minitest
   omniauth
   pg
   rails (= 4.1.4)

@@ -1,5 +1,11 @@
 require 'spec_helper'
 
 describe User do
-  pending "add some examples to (or delete) #{__FILE__}"
+  before do
+    @user = FactoryGirl.create(:user)
+  end
+
+  it "gets a uid assigned" do
+    expect(@user.uid).not_to be_blank
+  end
 end
