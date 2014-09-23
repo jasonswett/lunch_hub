@@ -102,6 +102,7 @@ GEM
     pg (0.17.0)
     polyglot (0.3.5)
     rack (1.5.2)
+    rack-rewrite (1.5.0)
     rack-test (0.6.2)
       rack (>= 1.0)
     rails (4.1.4)
@@ -186,6 +187,7 @@ DEPENDENCIES
   minitest
   omniauth
   pg
+  rack-rewrite
   rails (= 4.1.4)
   rails-api
   rails_12factor

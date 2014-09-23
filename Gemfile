@@ -31,6 +31,7 @@ group :doc do
   gem 'sdoc', require: false
 end
 
+gem 'rack-rewrite'
 gem 'rails_12factor'
 gem 'devise'
 gem 'devise_token_auth'
