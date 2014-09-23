@@ -21,6 +21,8 @@ module.exports = function (grunt) {
     dist: '../public'
   };
 
+  var modRewrite = require('connect-modrewrite');
+
   // Define the configuration for all the tasks
   grunt.initConfig({
 
@@ -111,6 +113,7 @@ module.exports = function (grunt) {
 
             // Setup the proxy
             var middlewares = [
+              modRewrite(['!/api|/assets|\\.html|\\.js|\\.css|\\woff|\\ttf|\\swf$ /index.html']),
               require('grunt-connect-proxy/lib/utils').proxyRequest,
               connect.static('.tmp'),
               connect().use(
