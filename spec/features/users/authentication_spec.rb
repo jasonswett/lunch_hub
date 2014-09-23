@@ -3,7 +3,7 @@ require 'spec_helper'
 feature "Sign in", js: true do
   before do
 		@user = FactoryGirl.create(:confirmed_user)
-    visit "/#/sign_in"
+    visit "/sign_in"
   end
 
   scenario "with valid inputs" do

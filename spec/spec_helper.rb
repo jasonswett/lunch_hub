@@ -14,6 +14,11 @@ ActiveRecord::Migration.check_pending! if defined?(ActiveRecord::Migration)
 
 Capybara.javascript_driver = :selenium
 
+# Includes rack-rewrite configuration so HTML5 pushState can function properly.
+Capybara.app = Rack::Builder.new do
+  eval File.read(Rails.root.join('config.ru'))
+end 
+
 RSpec.configure do |config|
   # ## Mock Framework
   #
