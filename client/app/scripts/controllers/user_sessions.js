@@ -12,6 +12,9 @@ angular.module('lunchHubApp')
     $rootScope.$on('auth:login-success', function() {
       $location.path('/');
     });
+    $rootScope.$on('auth:logout-success', function() {
+      $location.path('/sign_in');
+    });
     $rootScope.$on('auth:login-error', function(ev, reason) {
       $scope.error = reason.errors[0];
     });

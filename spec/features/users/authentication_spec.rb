@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-feature "Sign in", js: true do
+feature "Authentication", js: true do
   before do
 		@user = FactoryGirl.create(:confirmed_user)
     visit "/sign_in"
@@ -11,7 +11,7 @@ feature "Sign in", js: true do
     fill_in "password", with: @user.password
     find("button", text: "Sign in").click
 
-		expect(page).to have_content("This is the home page.")
+    expect(page).to have_content("This is the home page.")
   end
 
   scenario "with invalid credentials" do
@@ -20,5 +20,15 @@ feature "Sign in", js: true do
     find("button", text: "Sign in").click
 
     expect(page).to have_content("Invalid login credentials. Please try again.")
+  end
+
+  scenario "redirection" do
+    fill_in "email", with: @user.email
+    fill_in "password", with: @user.password
+    find("button", text: "Sign in").click
+    find("a", text: "Sign out").click
+
+    expect(page).to have_content("email")
+    expect(page).to have_content("password")
   end
 end
