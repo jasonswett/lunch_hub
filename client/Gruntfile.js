@@ -115,7 +115,8 @@ module.exports = function (grunt) {
             var middlewares = [
 
               // Redirect anything that's not a file or an API call to /index.html.
-              modRewrite(['!/api|/assets|\\.html|\\.js|\\.css|\\woff|\\ttf|\\swf$ /index.html']),
+              // This allows HTML5 pushState to work on page reloads.
+              modRewrite(['!/api|/assets|\\..+$ /index.html']),
 
               require('grunt-connect-proxy/lib/utils').proxyRequest,
               connect.static('.tmp'),
