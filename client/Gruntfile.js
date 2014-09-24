@@ -113,7 +113,10 @@ module.exports = function (grunt) {
 
             // Setup the proxy
             var middlewares = [
+
+              // Redirect anything that's not a file or an API call to /index.html.
               modRewrite(['!/api|/assets|\\.html|\\.js|\\.css|\\woff|\\ttf|\\swf$ /index.html']),
+
               require('grunt-connect-proxy/lib/utils').proxyRequest,
               connect.static('.tmp'),
               connect().use(
