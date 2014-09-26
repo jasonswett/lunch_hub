@@ -9,7 +9,7 @@ feature "Authentication", js: true do
 
   scenario "with valid inputs" do
     @login_page.sign_in(@user.email, @user.password)
-    expect(page).to have_content("This is the home page.")
+    expect(page).to have_content("Sign out")
   end
 
   scenario "with invalid credentials" do
@@ -21,7 +21,7 @@ feature "Authentication", js: true do
     @login_page.sign_in(@user.email, @user.password)
     find("a", text: "Sign out").click
 
-    expect(page).to have_content("email")
-    expect(page).to have_content("password")
+    expect(page).to have_content("Email")
+    expect(page).to have_content("Password")
   end
 end

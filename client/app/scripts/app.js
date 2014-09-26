@@ -31,8 +31,12 @@ app.config(function($routeProvider, $locationProvider) {
       controller: 'GroupsCtrl'
     })
     .when('/sign_in', {
-      templateUrl: 'views/user_sessions/sign_in.html',
+      templateUrl: 'views/user_sessions/new.html',
       controller: 'UserSessionsCtrl'
+    })
+    .when('/sign_up', {
+      templateUrl: 'views/user_registrations/new.html',
+      controller: 'UserRegistrationsCtrl'
     })
     .otherwise({
       redirectTo: '/'
