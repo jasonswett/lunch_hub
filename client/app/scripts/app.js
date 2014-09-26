@@ -26,6 +26,10 @@ app.config(function($routeProvider, $locationProvider) {
       templateUrl: 'views/main.html',
       controller: 'MainCtrl'
     })
+    .when('/today', {
+      templateUrl: 'views/announcements.html',
+      controller: 'AnnouncementsCtrl'
+    })
     .when('/groups', {
       templateUrl: 'views/groups.html',
       controller: 'GroupsCtrl'

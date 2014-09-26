@@ -10,7 +10,7 @@
 angular.module('lunchHubApp')
   .controller('UserSessionsCtrl', ['$scope', '$rootScope', '$location', function ($scope, $rootScope, $location) {
     $rootScope.$on('auth:login-success', function() {
-      $location.path('/');
+      $location.path('/today');
     });
     $rootScope.$on('auth:logout-success', function() {
       $location.path('/sign_in');
