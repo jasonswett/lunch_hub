@@ -483,6 +483,7 @@ module.exports = function (grunt) {
   grunt.registerTask('test', [
     'clean:server',
     'wiredep',
+    'railsServer:test',
     'concurrent:test',
     'autoprefixer',
     'configureProxies:test',
