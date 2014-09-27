@@ -31,11 +31,16 @@ group :doc do
   gem 'sdoc', require: false
 end
 
-gem 'rack-rewrite'
-gem 'rails_12factor'
+# Use foreigner to easily create foreign keys
+gem 'foreigner'
+
+# Use Devise and omniauth for authentication
 gem 'devise'
 gem 'devise_token_auth'
 gem 'omniauth'
+
+gem 'rack-rewrite'
+gem 'rails_12factor'
 
 group :development do
   gem 'letter_opener'
