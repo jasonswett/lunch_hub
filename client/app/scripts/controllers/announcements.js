@@ -8,5 +8,5 @@
  * Controller of the lunchHubApp
  */
 angular.module('lunchHubApp')
-  .controller('AnnouncementsCtrl', ['$scope', function ($scope) {
+  .controller('AnnouncementsCtrl', [function () {
   }]);
