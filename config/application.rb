@@ -21,5 +21,15 @@ module LunchHub
     # config.i18n.default_locale = :de
 
     config.active_record.pluralize_table_names = false
+
+    config.generators do |g|
+      g.test_framework :rspec,
+        fixtures: false,
+        view_specs: false,
+        helper_specs: false,
+        routing_specs: false,
+        request_specs: false,
+        controller_specs: true
+    end
   end
 end
