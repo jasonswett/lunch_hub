@@ -22,7 +22,6 @@
     "grunt-filerev": "^0.2.1",
     "grunt-google-cdn": "^0.4.0",
     "grunt-newer": "^0.7.0",
-    "grunt-ngmin": "^0.0.3",
     "grunt-protractor-runner": "^1.1.0",
     "grunt-rails-server": "jasonswett/grunt-rails-server",
     "grunt-shell-spawn": "^0.3.0",
@@ -31,6 +30,7 @@
     "grunt-wiredep": "^1.9.0",
     "jshint-stylish": "^0.2.0",
     "load-grunt-tasks": "^0.6.0",
+    "ng-annotate": "^0.10.1",
     "source-map": "^0.1.37",
     "time-grunt": "^0.3.1"
   },
