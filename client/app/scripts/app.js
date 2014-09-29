@@ -26,9 +26,20 @@ app.config(function($routeProvider, $locationProvider) {
       templateUrl: 'views/main.html',
       controller: 'MainCtrl'
     })
+/*
     .when('/today', {
       templateUrl: 'views/announcements.html',
       controller: 'AnnouncementsCtrl'
+    })
+    */
+    .when('/today', {
+      templateUrl: 'views/announcements.html',
+      controller: 'AnnouncementsCtrl',
+      resolve: {
+        auth: function($auth) {
+          return $auth.validateUser();
+        }
+      }
     })
     .when('/groups', {
       templateUrl: 'views/groups.html',

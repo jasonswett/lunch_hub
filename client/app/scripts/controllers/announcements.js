@@ -8,9 +8,20 @@
  * Controller of the lunchHubApp
  */
 angular.module('lunchHubApp')
-  .controller('AnnouncementsCtrl', ['$scope', 'Announcement', function ($scope, Announcement) {
+  .controller('AnnouncementsCtrl', ['$scope', 'Announcement', '$auth', function ($scope, Announcement, $auth) {
     Announcement.query().then(function(announcements) {
-      console.log(announcements);
       $scope.announcements = announcements;
     });
+
+    /*
+    $auth.validateUser().then(function(resp) {
+      console.log(resp);
+    });
+    */
+
+    $scope.save = function() {
+      new Announcement($scope.announcement).create().then(function(announcement) {
+        $scope.announcements.push(announcement);
+      });
+    };
   }]);
