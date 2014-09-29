@@ -53,6 +53,10 @@ app.config(function($authProvider) {
   });
 });
 
+app.factory('Announcement', ['railsResourceFactory', function (railsResourceFactory) {
+  return railsResourceFactory({ url: '/api/announcements', name: 'announcement' });
+}]);
+
 app.factory('Group', ['railsResourceFactory', function (railsResourceFactory) {
   return railsResourceFactory({ url: '/api/groups', name: 'group' });
 }]);
