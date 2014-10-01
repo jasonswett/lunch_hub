@@ -18,10 +18,10 @@ class AnnouncementsController < ApplicationController
   # POST /announcements
   # POST /announcements.json
   def create
-    @announcement = Announcement.new(announcement_params)
+    @announcement = Announcement.new(announcement_params.merge(user: current_user))
 
     if @announcement.save
-      render json: @announcement, status: :created, location: @announcement
+      render 'show'
     else
       render json: @announcement.errors, status: :unprocessable_entity
     end
@@ -51,6 +51,6 @@ class AnnouncementsController < ApplicationController
   private
 
   def announcement_params
-    params.require(:announcement).permit(:user_id, :restaurant_name)
+    params.require(:announcement).permit(:restaurant_name)
   end
 end

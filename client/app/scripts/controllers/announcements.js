@@ -12,4 +12,10 @@ angular.module('lunchHubApp')
     Announcement.query().then(function(announcements) {
       $scope.announcements = announcements;
     });
+
+    $scope.save = function() {
+      new Announcement($scope.announcement).create().then(function(announcement) {
+        $scope.announcements.push(announcement);
+      });
+    };
   }]);
