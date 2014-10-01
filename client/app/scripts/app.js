@@ -65,3 +65,12 @@ app.factory('Announcement', ['railsResourceFactory', function (railsResourceFact
 app.factory('Group', ['railsResourceFactory', function (railsResourceFactory) {
   return railsResourceFactory({ url: '/api/groups', name: 'group' });
 }]);
+
+app.run(function($rootScope, $location) {
+  $rootScope.$on('auth:login-success', function() {
+    $location.path('/today');
+  });
+  $rootScope.$on('auth:logout-success', function() {
+    $location.path('/sign_in');
+  });
+});
