@@ -10,7 +10,6 @@
 angular.module('lunchHubApp')
   .controller('AnnouncementsCtrl', ['$scope', 'Announcement', function ($scope, Announcement) {
     Announcement.query().then(function(announcements) {
-      console.log(announcements);
       $scope.announcements = announcements;
     });
   }]);

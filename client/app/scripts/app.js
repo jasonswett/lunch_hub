@@ -30,9 +30,9 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
       templateUrl: 'views/announcements.html',
       controller: 'AnnouncementsCtrl',
       resolve: {
-        auth: function($auth) {
+        auth: ['$auth', function($auth) {
           return $auth.validateUser();
-        }
+        }]
       }
     })
     .when('/groups', {
