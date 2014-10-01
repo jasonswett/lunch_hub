@@ -19,7 +19,7 @@ var app = angular.module('lunchHubApp', [
   'ng-token-auth'
 ]);
 
-app.config(function($routeProvider, $locationProvider) {
+app.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
   $locationProvider.html5Mode(true);
   $routeProvider
     .when('/', {
@@ -50,13 +50,13 @@ app.config(function($routeProvider, $locationProvider) {
     .otherwise({
       redirectTo: '/'
     });
-});
+}]);
 
-app.config(function($authProvider) {
+app.config(['$authProvider', function($authProvider) {
   $authProvider.configure({
     apiUrl: '/api'
   });
-});
+}]);
 
 app.factory('Announcement', ['railsResourceFactory', function (railsResourceFactory) {
   return railsResourceFactory({ url: '/api/announcements', name: 'announcement' });
@@ -66,11 +66,11 @@ app.factory('Group', ['railsResourceFactory', function (railsResourceFactory) {
   return railsResourceFactory({ url: '/api/groups', name: 'group' });
 }]);
 
-app.run(function($rootScope, $location) {
+app.run(['$rootScope', '$location', function($rootScope, $location) {
   $rootScope.$on('auth:login-success', function() {
     $location.path('/today');
   });
   $rootScope.$on('auth:logout-success', function() {
     $location.path('/sign_in');
   });
-});
+}]);
