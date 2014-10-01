@@ -43,6 +43,8 @@ feature 'Authentication', js: true do
   feature 'restricting page access' do
     scenario 'visiting "today" page when signed' do
       @login_page.sign_in(@user.email, @user.password)
+      expect(page).to have_content("Today's Lunch")
+
       visit '/today'
       expect(page).to have_content("Today's Lunch")
     end
