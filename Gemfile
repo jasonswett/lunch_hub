@@ -1,15 +1,12 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.0'
+gem 'rails', '4.1.4'
 
 gem 'rails-api'
 
 # Use postgresql as the database for Active Record
 gem 'pg'
-
-# Use SCSS for stylesheets
-gem 'sass-rails', '~> 4.0.0'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
@@ -34,11 +31,28 @@ group :doc do
   gem 'sdoc', require: false
 end
 
-gem "rails_12factor"
-gem "devise"
+# Use foreigner to easily create foreign keys
+gem 'foreigner'
+
+# Use Devise and omniauth for authentication
+gem 'devise'
+gem 'devise_token_auth'
+gem 'omniauth'
+
+gem 'rack-rewrite'
+gem 'rails_12factor'
+
+group :development do
+  gem 'letter_opener'
+end
 
 group :test do
-  gem "rspec-rails"
-  gem "capybara"
-  gem "database_cleaner"
+  gem 'rspec-rails'
+  gem 'capybara'
+  gem 'selenium-webdriver'
+  gem 'database_cleaner'
+  gem 'factory_girl_rails'
+  gem 'faker'
+  gem 'compass'
+  gem 'minitest'
 end

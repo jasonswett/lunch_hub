@@ -21,6 +21,8 @@ module.exports = function (grunt) {
     dist: '../public'
   };
 
+  var modRewrite = require('connect-modrewrite');
+
   // Define the configuration for all the tasks
   grunt.initConfig({
 
@@ -34,21 +36,16 @@ module.exports = function (grunt) {
       },
       run: {
         options: {
-          configFile: "protractor_conf.js", // Target-specific config file
+          configFile: 'protractor_conf.js', // Target-specific config file
           args: {} // Target-specific arguments
         }
       },
     },
 
-    shell: {
-      cleanRailsTestDatabase: {
-        command: 'rake db:reset RAILS_ENV=test',
-      },
-      startWebdriverManagerServer: {
-        command: 'node_modules/protractor/bin/webdriver-manager start',
-        options: {
-          async: true
-        }
+    uglify: {
+      options: {
+        beautify: true,
+        mangle: true
       }
     },
 
@@ -116,6 +113,11 @@ module.exports = function (grunt) {
 
             // Setup the proxy
             var middlewares = [
+
+              // Redirect anything that's not a file or an API call to /index.html.
+              // This allows HTML5 pushState to work on page reloads.
+              modRewrite(['!/api|/assets|\\..+$ /index.html']),
+
               require('grunt-connect-proxy/lib/utils').proxyRequest,
               connect.static('.tmp'),
               connect().use(
@@ -229,7 +231,6 @@ module.exports = function (grunt) {
     // Automatically inject Bower components into the app
     wiredep: {
       options: {
-        cwd: '<%= yeoman.app %>'
       },
       app: {
         src: ['<%= yeoman.app %>/index.html'],
@@ -375,15 +376,14 @@ module.exports = function (grunt) {
       }
     },
 
-    // ngmin tries to make the code safe for minification automatically by
-    // using the Angular long form for dependency injection. It doesn't work on
-    // things like resolve or inject so those have to be done manually.
-    ngmin: {
+    // ng-annotate tries to make the code safe for minification automatically
+    // by using the Angular long form for dependency injection.
+    ngAnnotate: {
       dist: {
         files: [{
           expand: true,
           cwd: '.tmp/concat/scripts',
-          src: '*.js',
+          src: ['*.js', '!oldieshim.js'],
           dest: '.tmp/concat/scripts'
         }]
       }
@@ -482,8 +482,6 @@ module.exports = function (grunt) {
   grunt.registerTask('test', [
     'clean:server',
     'wiredep',
-    'shell:cleanRailsTestDatabase',
-    'railsServer:test',
     'concurrent:test',
     'autoprefixer',
     'configureProxies:test',
@@ -498,7 +496,7 @@ module.exports = function (grunt) {
     'concurrent:dist',
     'autoprefixer',
     'concat',
-    'ngmin',
+    'ngAnnotate',
     'copy:dist',
     'cdnify',
     'cssmin',
@@ -517,7 +515,6 @@ module.exports = function (grunt) {
   grunt.registerTask('heroku:production', 'build');
 
   grunt.loadNpmTasks('grunt-connect-proxy');
-  grunt.loadNpmTasks('grunt-shell-spawn');
   grunt.loadNpmTasks('grunt-protractor-runner');
   grunt.loadNpmTasks('grunt-rails-server');
 };
