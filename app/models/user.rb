@@ -7,6 +7,13 @@ class User < ActiveRecord::Base
 
   before_save -> do
     self.uid = SecureRandom.uuid
-    skip_confirmation!
+  end
+
+  def confirmed?
+    true
+  end
+
+  def send_confirmation_instructions(attributes)
+    # Do nothing because we're not :confirmable.
   end
 end

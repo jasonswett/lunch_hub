@@ -1,3 +1,20 @@
+PATH
+  remote: /Users/jasonswett/projects/open_source/devise
+  specs:
+    devise (3.3.0)
+      bcrypt (~> 3.0)
+      orm_adapter (~> 0.1)
+      railties (>= 3.2.6, < 5)
+      thread_safe (~> 0.1)
+      warden (~> 1.2.3)
+
+PATH
+  remote: /Users/jasonswett/projects/open_source/devise_token_auth
+  specs:
+    devise_token_auth (0.1.29.beta1)
+      devise (~> 3.2)
+      rails (~> 4.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -52,15 +69,6 @@ GEM
       fssm (>= 0.2.7)
       sass (~> 3.2.0.alpha.93)
     database_cleaner (1.2.0)
-    devise (3.3.0)
-      bcrypt (~> 3.0)
-      orm_adapter (~> 0.1)
-      railties (>= 3.2.6, < 5)
-      thread_safe (~> 0.1)
-      warden (~> 1.2.3)
-    devise_token_auth (0.1.28)
-      devise (~> 3.2)
-      rails (~> 4.1)
     diff-lcs (1.2.4)
     erubis (2.7.0)
     execjs (2.0.2)
@@ -191,8 +199,8 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   compass
   database_cleaner
-  devise
-  devise_token_auth
+  devise!
+  devise_token_auth!
   factory_girl_rails
   faker
   foreigner
