@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131115165603) do
+ActiveRecord::Schema.define(version: 20141001225548) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,15 @@ ActiveRecord::Schema.define(version: 20131115165603) do
 
   add_index "address", ["line1", "line2", "city", "state_id", "zip"], name: "index_address_on_line1_and_line2_and_city_and_state_id_and_zip", unique: true, using: :btree
   add_index "address", ["state_id"], name: "index_address_on_state_id", using: :btree
+
+  create_table "announcement", force: true do |t|
+    t.integer  "user_id",         null: false
+    t.string   "restaurant_name", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "announcement", ["user_id"], name: "index_announcement_on_user_id", using: :btree
 
   create_table "group", force: true do |t|
     t.string   "name",                     null: false
@@ -55,21 +64,31 @@ ActiveRecord::Schema.define(version: 20131115165603) do
   add_index "state", ["name"], name: "index_state_on_name", unique: true, using: :btree
 
   create_table "user", force: true do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "email"
+    t.string   "encrypted_password",          default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
+    t.string   "reset_password_redirect_url"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",               default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.string   "name"
+    t.string   "nickname"
+    t.string   "image"
+    t.string   "provider"
+    t.string   "uid",                         default: "", null: false
+    t.text     "tokens"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "user", ["email"], name: "index_user_on_email", unique: true, using: :btree
+  add_index "user", ["email"], name: "index_user_on_email", using: :btree
   add_index "user", ["reset_password_token"], name: "index_user_on_reset_password_token", unique: true, using: :btree
+  add_index "user", ["uid"], name: "index_user_on_uid", unique: true, using: :btree
+
+  add_foreign_key "announcement", "user", name: "announcement_user_id_fk"
 
 end
