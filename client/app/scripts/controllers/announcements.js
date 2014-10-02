@@ -15,6 +15,7 @@ angular.module('lunchHubApp')
 
     $scope.save = function() {
       new Announcement($scope.announcement).create().then(function(announcement) {
+        $scope.announcement.restaurantName = '';
         $scope.announcements.push(announcement);
       });
     };
