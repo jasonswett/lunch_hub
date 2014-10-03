@@ -36,7 +36,7 @@ gem 'foreigner'
 
 # Use Devise and omniauth for authentication
 gem 'devise'
-gem 'devise_token_auth'
+gem 'devise_token_auth', git: 'https://github.com/lynndylanhurley/devise_token_auth.git'
 gem 'omniauth'
 
 gem 'rack-rewrite'

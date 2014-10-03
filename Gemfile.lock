@@ -1,3 +1,11 @@
+GIT
+  remote: https://github.com/lynndylanhurley/devise_token_auth.git
+  revision: 2ba72ee7368418bc25361e70a564761da2ffbc50
+  specs:
+    devise_token_auth (0.1.29.beta7)
+      devise (~> 3.2)
+      rails (~> 4.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -58,9 +66,6 @@ GEM
       railties (>= 3.2.6, < 5)
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
-    devise_token_auth (0.1.28)
-      devise (~> 3.2)
-      rails (~> 4.1)
     diff-lcs (1.2.4)
     erubis (2.7.0)
     execjs (2.0.2)
@@ -192,7 +197,7 @@ DEPENDENCIES
   compass
   database_cleaner
   devise
-  devise_token_auth
+  devise_token_auth!
   factory_girl_rails
   faker
   foreigner
