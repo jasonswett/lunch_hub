@@ -9,6 +9,8 @@
  */
 angular.module('lunchHubApp')
   .controller('AnnouncementsCtrl', ['$scope', 'Announcement', function ($scope, Announcement) {
+    $scope.announcements = [];
+
     Announcement.query().then(function(announcements) {
       $scope.announcements = announcements;
     });

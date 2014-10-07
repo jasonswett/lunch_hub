@@ -514,6 +514,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('heroku:production', 'build');
 
+  grunt.loadNpmTasks('grunt-karma');
   grunt.loadNpmTasks('grunt-connect-proxy');
   grunt.loadNpmTasks('grunt-protractor-runner');
   grunt.loadNpmTasks('grunt-rails-server');
