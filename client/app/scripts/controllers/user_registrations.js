@@ -8,8 +8,8 @@
  * Controller of the lunchHubApp
  */
 angular.module('lunchHubApp')
-  .controller('UserRegistrationsCtrl', ['$scope', '$rootScope', '$location', '$auth', function ($scope, $rootScope, $location, $auth) {
-    $rootScope.$on('auth:registration-email-success', function() {
+  .controller('UserRegistrationsCtrl', ['$scope', '$location', '$auth', function ($scope, $location, $auth) {
+    $scope.$on('auth:registration-email-success', function() {
       $location.path('/today');
     });
     $scope.handleRegBtnClick = function() {

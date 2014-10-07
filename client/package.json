@@ -39,5 +39,9 @@
   },
   "scripts": {
     "test": "grunt test"
+  },
+  "devDependencies": {
+    "karma": "^0.12.24",
+    "karma-phantomjs-launcher": "^0.1.4"
   }
 }
