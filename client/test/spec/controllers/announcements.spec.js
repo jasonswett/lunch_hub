@@ -2,13 +2,6 @@
 
 describe('AnnouncementsCtrl', function() {
   beforeEach(function() {
-    angular.module('ng-token-auth', []).provider('$auth', function() {
-      return {
-        configure: function() {},
-        $get: []
-      };
-    });
-
     module('lunchHubApp', 'ng-token-auth');
   });
 

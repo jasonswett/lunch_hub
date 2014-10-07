@@ -29,6 +29,7 @@ module.exports = function(config) {
       'bower_components/angular-route/angular-route.js',
       'bower_components/angularjs-rails-resource/angularjs-rails-resource.js',
       'bower_components/ng-token-auth/dist/ng-token-auth.js',
+      'test/mocks/*.mock.js',
       'app/scripts/app.js',
       'app/scripts/controllers/announcements.js',
       'test/spec/controllers/announcements.spec.js'
