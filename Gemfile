@@ -47,7 +47,8 @@ group :development do
 end
 
 group :test do
-  gem 'rspec-rails'
+  gem 'rspec', '2.99'
+  gem 'rspec-rails', '2.99'
   gem 'capybara'
   gem 'selenium-webdriver'
   gem 'database_cleaner'
