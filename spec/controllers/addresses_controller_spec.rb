@@ -18,7 +18,7 @@ require 'spec_helper'
 # Message expectations are only used when there is no simpler way to specify
 # that an instance is receiving a specific message.
 
-describe AddressesController do
+describe AddressesController, :type => :controller do
 
   before(:each) { sign_in }
 
@@ -50,7 +50,7 @@ describe AddressesController do
     it "assigns all addresses as @addresses" do
       address = Address.create! valid_attributes
       get :index, {}, valid_session
-      assigns(:addresses).should eq([address])
+      expect(assigns(:addresses)).to eq([address])
     end
   end
 
@@ -58,14 +58,14 @@ describe AddressesController do
     it "assigns the requested address as @address" do
       address = Address.create! valid_attributes
       get :show, {:id => address.to_param}, valid_session
-      assigns(:address).should eq(address)
+      expect(assigns(:address)).to eq(address)
     end
   end
 
   describe "GET new" do
     it "assigns a new address as @address" do
       get :new, {}, valid_session
-      assigns(:address).should be_a_new(Address)
+      expect(assigns(:address)).to be_a_new(Address)
     end
   end
 
@@ -73,7 +73,7 @@ describe AddressesController do
     it "assigns the requested address as @address" do
       address = Address.create! valid_attributes
       get :edit, {:id => address.to_param}, valid_session
-      assigns(:address).should eq(address)
+      expect(assigns(:address)).to eq(address)
     end
   end
 
@@ -87,17 +87,17 @@ describe AddressesController do
 
       it "assigns a newly created address as @address" do
         post :create, {:address => valid_attributes}, valid_session
-        assigns(:address).should be_a(Address)
-        assigns(:address).should be_persisted
+        expect(assigns(:address)).to be_a(Address)
+        expect(assigns(:address)).to be_persisted
       end
     end
 
     describe "with invalid params" do
       it "assigns a newly created but unsaved address as @address" do
         # Trigger the behavior that occurs when invalid params are submitted
-        Address.any_instance.stub(:save).and_return(false)
+        allow_any_instance_of(Address).to receive(:save).and_return(false)
         post :create, {:address => { "line1" => "invalid value" }}, valid_session
-        assigns(:address).should be_a_new(Address)
+        expect(assigns(:address)).to be_a_new(Address)
       end
     end
   end
@@ -110,14 +110,14 @@ describe AddressesController do
         # specifies that the Address created on the previous line
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
-        Address.any_instance.should_receive(:update).with({ "line1" => "MyString" })
+        expect_any_instance_of(Address).to receive(:update).with({ "line1" => "MyString" })
         put :update, {:id => address.to_param, :address => { "line1" => "MyString" }}, valid_session
       end
 
       it "assigns the requested address as @address" do
         address = Address.create! valid_attributes
         put :update, {:id => address.to_param, :address => valid_attributes}, valid_session
-        assigns(:address).should eq(address)
+        expect(assigns(:address)).to eq(address)
       end
     end
 
@@ -125,9 +125,9 @@ describe AddressesController do
       it "assigns the address as @address" do
         address = Address.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
-        Address.any_instance.stub(:save).and_return(false)
+        allow_any_instance_of(Address).to receive(:save).and_return(false)
         put :update, {:id => address.to_param, :address => { "line1" => "invalid value" }}, valid_session
-        assigns(:address).should eq(address)
+        expect(assigns(:address)).to eq(address)
       end
     end
   end

@@ -1,7 +1,7 @@
 module ControllerHelpers
   def sign_in(user = double('user'))
     if user.nil?
-      request.env['warden'].stub(:authenticate!).
+      allow(request.env['warden']).to receive(:authenticate!).
         and_throw(:warden, {:scope => :user})
       controller.stub :current_user => nil
     else

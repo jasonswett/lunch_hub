@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe ProspectiveUser do
+describe ProspectiveUser, :type => :model do
   before do
     @prospective_user = ProspectiveUser.new(
       first_name: "John",
@@ -10,18 +10,18 @@ describe ProspectiveUser do
 
   subject { @prospective_user }
 
-  it { should respond_to(:first_name) }
-  it { should respond_to(:email) }
-  it { should be_valid }
+  it { is_expected.to respond_to(:first_name) }
+  it { is_expected.to respond_to(:email) }
+  it { is_expected.to be_valid }
 
   describe "when name is not present" do
     before { @prospective_user.first_name = " " }
-    it { should_not be_valid }
+    it { is_expected.not_to be_valid }
   end
 
   describe "when email is not present" do
     before { @prospective_user.email = " " }
-    it { should_not be_valid }
+    it { is_expected.not_to be_valid }
   end
 
   describe "when email format is invalid" do
@@ -61,6 +61,6 @@ describe ProspectiveUser do
       user_with_same_email.save
     end
 
-    it { should_not be_valid }
+    it { is_expected.not_to be_valid }
   end
 end

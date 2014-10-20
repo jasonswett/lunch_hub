@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Group do
+describe Group, :type => :model do
   before do
     @group = Group.new(
       name: "Acme",
@@ -10,13 +10,13 @@ describe Group do
 
   subject { @group }
 
-  it { should respond_to(:name) }
-  it { should respond_to(:description) }
-  it { should be_valid }
+  it { is_expected.to respond_to(:name) }
+  it { is_expected.to respond_to(:description) }
+  it { is_expected.to be_valid }
 
   describe "when name is not present" do
     before { @group.name = " " }
-    it { should_not be_valid }
+    it { is_expected.not_to be_valid }
   end
 
   describe "when name is already taken" do
@@ -26,6 +26,6 @@ describe Group do
       group_with_same_name.save
     end
 
-    it { should_not be_valid }
+    it { is_expected.not_to be_valid }
   end
 end
