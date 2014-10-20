@@ -23,12 +23,16 @@ describe AnnouncementsController do
   # This should return the minimal set of attributes required to create a valid
   # Announcement. As you add validations to Announcement, be sure to
   # adjust the attributes here as well.
+  let(:user) { FactoryGirl.create(:user) }
+
   let(:valid_attributes) {
     {
-      user_id: FactoryGirl.create(:user).id,
+      user_id: user.id,
       restaurant_name: "Bangkok Taste"
     }
   }
+
+  before(:each) { sign_in(user) }
 
   let(:default_params) { { format: :json } }
 
@@ -86,8 +90,8 @@ describe AnnouncementsController do
         # specifies that the Announcement created on the previous line
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
-        Announcement.any_instance.should_receive(:update).with({ "user_id" => "" })
-        put :update, {:id => announcement.to_param, :announcement => { "user_id" => "" }}, valid_session
+        Announcement.any_instance.should_receive(:update).with({ "restaurant_name" => "foo" })
+        put :update, {:id => announcement.id, :announcement => { "restaurant_name" => "foo" }}, valid_session
       end
 
       it "assigns the requested announcement as @announcement" do
