@@ -9,15 +9,22 @@
  * Main module of the application.
  */
 var app = angular.module('lunchHubApp', [
-  'ngAnimate',
-  'ngCookies',
-  'ngResource',
-  'ngRoute',
-  'ngSanitize',
-  'ngTouch',
-  'rails',
-  'ng-token-auth'
-]);
+    'ngAnimate',
+    'ngCookies',
+    'ngResource',
+    'ngRoute',
+    'ngSanitize',
+    'ngTouch',
+    'rails',
+    'ng-token-auth'
+  ])
+  .factory('NavService', ['$location', function($location) {
+    return {
+      isActive: function(viewLocation) {
+        return viewLocation === $location.path();
+      }
+    };
+  }])
 
 app.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
   $locationProvider.html5Mode(true);
