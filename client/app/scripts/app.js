@@ -35,6 +35,10 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
         }]
       }
     })
+    .when('/profile', {
+      templateUrl: 'views/users/edit.html',
+      controller: 'UsersCtrl'
+    })
     .when('/groups', {
       templateUrl: 'views/groups.html',
       controller: 'GroupsCtrl'

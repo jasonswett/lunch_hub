@@ -1,0 +1,16 @@
+<h1>User Profile</h1>
+
+<form ng-submit="updateProfile(updateProfileForm)" role="form">
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input type="text"
+           name="name"
+           id="name"
+           ng-model="updateProfileForm.name"
+           required="required"
+           class="form-control"
+           focus-on-load>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Save</button>
+</form>
