@@ -8,11 +8,11 @@ angular.module('lunchHubApp')
       transclude: true,
       templateUrl: '/views/directives/nav-li.html',
       link: function($scope, $element, $attributes) {
-        $scope.href = '/' + $attributes.href;
+        $scope.uri = '/' + $attributes.uri;
         $scope.isActive = NavService.isActive;
       },
       scope: {
-        href: '=href'
+        uri: '=uri'
       }
     };
   }]);

@@ -23,10 +23,10 @@
     <div class="container">
       <div class="header" ng-controller="HeaderCtrl">
         <ul class="nav nav-pills pull-right">
-          <nav-li href="home">Home</nav-li>
-          <nav-li href="today">Today</nav-li>
-          <nav-li href="profile">Profile</nav-li>
-          <nav-li href="groups">Groups</nav-li>
+          <nav-li uri="home">Home</nav-li>
+          <nav-li uri="today">Today</nav-li>
+          <nav-li uri="profile">Profile</nav-li>
+          <nav-li uri="groups">Groups</nav-li>
           <li ng-class="{ active: isActive('/sign_in') }" ng-show="!user.id"><a ng-href="/sign_in">Sign in</a></li>
           <li ng-show="user.id"><a ng-click='signOut()'>Sign out</a></li>
         </ul>
