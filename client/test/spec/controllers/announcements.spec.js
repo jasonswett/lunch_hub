@@ -2,9 +2,9 @@
 
 describe('AnnouncementsCtrl', function() {
   var $httpBackend,
-      announcement,
       scope,
-      ctrl;
+      ctrl,
+      announcement;
 
   beforeEach(function() {
     module('lunchHubApp');
