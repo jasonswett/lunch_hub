@@ -1,19 +1,12 @@
 'use strict';
 
 describe('GroupsCtrl', function() {
-  var $httpBackend,
-      scope,
-      ctrl,
-      group;
+  var group;
 
   beforeEach(function() {
-    module('lunchHubApp');
-
     inject(function($injector) {
-      $httpBackend       = $injector.get('$httpBackend');
-      scope              = $injector.get('$rootScope').$new();
-      ctrl               = $injector.get('$controller')('GroupsCtrl', { $scope: scope });
-      group              = { name: 'Jason\'s Group' };
+      ctrl = $injector.get('$controller')('GroupsCtrl', { $scope: scope });
+      group = { name: 'Jason\'s Group' };
 
       $httpBackend.expect('GET', '/api/groups').respond([group]);
     });

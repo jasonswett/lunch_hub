@@ -1,17 +1,10 @@
 'use strict';
 
 describe('AnnouncementsCtrl', function() {
-  var $httpBackend,
-      scope,
-      ctrl,
-      announcement;
+  var announcement;
 
   beforeEach(function() {
-    module('lunchHubApp');
-
     inject(function($injector) {
-      $httpBackend       = $injector.get('$httpBackend');
-      scope              = $injector.get('$rootScope').$new();
       ctrl               = $injector.get('$controller')('AnnouncementsCtrl', { $scope: scope });
       announcement       = { restaurantName: 'Bangkok Taste' };
       scope.announcement = { restaurantName: 'Jason\'s Pizza' };
