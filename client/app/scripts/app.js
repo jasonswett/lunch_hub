@@ -40,11 +40,11 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
       controller: 'GroupsCtrl'
     })
     .when('/sign_in', {
-      templateUrl: 'views/user_sessions/new.html',
+      templateUrl: 'views/user-sessions/new.html',
       controller: 'UserSessionsCtrl'
     })
     .when('/sign_up', {
-      templateUrl: 'views/user_registrations/new.html',
+      templateUrl: 'views/user-registrations/new.html',
       controller: 'UserRegistrationsCtrl'
     })
     .otherwise({

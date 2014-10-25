@@ -12,6 +12,9 @@ angular.module('lunchHubApp')
     $scope.$on('auth:registration-email-success', function() {
       $location.path('/today');
     });
+    $scope.$on('auth:registration-email-error', function(ev, reason) {
+      $scope.error = reason.errors[0];
+    });
     $scope.handleRegBtnClick = function() {
       $auth.submitRegistration($scope.registrationForm)
         .then(function() { 

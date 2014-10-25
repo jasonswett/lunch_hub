@@ -1,21 +1,21 @@
 require 'spec_helper'
 
-describe Announcement do
+describe Announcement, :type => :model do
   before do
     @announcement = FactoryGirl.create(:announcement)
   end
 
   subject { @announcement }
-  it { should be_valid }
+  it { is_expected.to be_valid }
 
   describe "when restaurant name is not present" do
     before { @announcement.restaurant_name = ' ' }
-    it { should_not be_valid }
+    it { is_expected.not_to be_valid }
   end
 
   describe "when user is not present" do
     before { @announcement.user = nil }
-    it { should_not be_valid }
+    it { is_expected.not_to be_valid }
   end
 
   describe "for_today" do

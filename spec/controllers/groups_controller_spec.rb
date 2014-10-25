@@ -18,7 +18,7 @@ require 'spec_helper'
 # Message expectations are only used when there is no simpler way to specify
 # that an instance is receiving a specific message.
 
-describe GroupsController do
+describe GroupsController, :type => :controller do
 
   before(:each) { sign_in }
 
@@ -36,7 +36,7 @@ describe GroupsController do
     it "assigns all groups as @groups" do
       group = Group.create! valid_attributes
       get :index, {}, valid_session
-      assigns(:groups).should eq([group])
+      expect(assigns(:groups)).to eq([group])
     end
   end
 
@@ -44,7 +44,7 @@ describe GroupsController do
     it "assigns the requested group as @group" do
       group = Group.create! valid_attributes
       get :show, {:id => group.to_param}, valid_session
-      assigns(:group).should eq(group)
+      expect(assigns(:group)).to eq(group)
     end
   end
 
@@ -58,17 +58,17 @@ describe GroupsController do
 
       it "assigns a newly created group as @group" do
         post :create, {:group => valid_attributes}, valid_session
-        assigns(:group).should be_a(Group)
-        assigns(:group).should be_persisted
+        expect(assigns(:group)).to be_a(Group)
+        expect(assigns(:group)).to be_persisted
       end
     end
 
     describe "with invalid params" do
       it "assigns a newly created but unsaved group as @group" do
         # Trigger the behavior that occurs when invalid params are submitted
-        Group.any_instance.stub(:save).and_return(false)
+        allow_any_instance_of(Group).to receive(:save).and_return(false)
         post :create, {:group => { "name" => "invalid value" }}, valid_session
-        assigns(:group).should be_a_new(Group)
+        expect(assigns(:group)).to be_a_new(Group)
       end
     end
   end
@@ -81,14 +81,14 @@ describe GroupsController do
         # specifies that the Group created on the previous line
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
-        Group.any_instance.should_receive(:update).with({ "name" => "MyString" })
+        expect_any_instance_of(Group).to receive(:update).with({ "name" => "MyString" })
         put :update, {:id => group.to_param, :group => { "name" => "MyString" }}, valid_session
       end
 
       it "assigns the requested group as @group" do
         group = Group.create! valid_attributes
         put :update, {:id => group.to_param, :group => valid_attributes}, valid_session
-        assigns(:group).should eq(group)
+        expect(assigns(:group)).to eq(group)
       end
     end
 
@@ -96,9 +96,9 @@ describe GroupsController do
       it "assigns the group as @group" do
         group = Group.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
-        Group.any_instance.stub(:save).and_return(false)
+        allow_any_instance_of(Group).to receive(:save).and_return(false)
         put :update, {:id => group.to_param, :group => { "name" => "invalid value" }}, valid_session
-        assigns(:group).should eq(group)
+        expect(assigns(:group)).to eq(group)
       end
     end
   end

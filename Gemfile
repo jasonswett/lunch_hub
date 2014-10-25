@@ -36,7 +36,7 @@ gem 'foreigner'
 
 # Use Devise and omniauth for authentication
 gem 'devise'
-gem 'devise_token_auth', git: 'https://github.com/lynndylanhurley/devise_token_auth.git'
+gem 'devise_token_auth', git: 'https://github.com/jasonswett/devise_token_auth.git'
 gem 'omniauth'
 
 gem 'rack-rewrite'
@@ -47,7 +47,8 @@ group :development do
 end
 
 group :test do
-  gem 'rspec-rails'
+  gem 'rspec', '~> 3.1'
+  gem 'rspec-rails', '~> 3.1'
   gem 'capybara'
   gem 'selenium-webdriver'
   gem 'database_cleaner'

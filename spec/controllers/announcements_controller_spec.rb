@@ -18,17 +18,21 @@ require 'spec_helper'
 # Message expectations are only used when there is no simpler way to specify
 # that an instance is receiving a specific message.
 
-describe AnnouncementsController do
+describe AnnouncementsController, :type => :controller do
 
   # This should return the minimal set of attributes required to create a valid
   # Announcement. As you add validations to Announcement, be sure to
   # adjust the attributes here as well.
+  let(:user) { FactoryGirl.create(:user) }
+
   let(:valid_attributes) {
     {
-      user_id: FactoryGirl.create(:user).id,
+      user_id: user.id,
       restaurant_name: "Bangkok Taste"
     }
   }
+
+  before(:each) { sign_in(user) }
 
   let(:default_params) { { format: :json } }
 
@@ -41,7 +45,7 @@ describe AnnouncementsController do
     it "assigns all announcements as @announcements" do
       announcement = Announcement.create! valid_attributes
       get :index, {}, valid_session
-      assigns(:announcements).should eq([announcement])
+      expect(assigns(:announcements)).to eq([announcement])
     end
   end
 
@@ -49,7 +53,7 @@ describe AnnouncementsController do
     it "assigns the requested announcement as @announcement" do
       announcement = Announcement.create! valid_attributes
       get :show, {:id => announcement.to_param}, valid_session
-      assigns(:announcement).should eq(announcement)
+      expect(assigns(:announcement)).to eq(announcement)
     end
   end
 
@@ -63,17 +67,17 @@ describe AnnouncementsController do
 
       it "assigns a newly created announcement as @announcement" do
         post :create, {:announcement => valid_attributes}, valid_session
-        assigns(:announcement).should be_a(Announcement)
-        assigns(:announcement).should be_persisted
+        expect(assigns(:announcement)).to be_a(Announcement)
+        expect(assigns(:announcement)).to be_persisted
       end
     end
 
     describe "with invalid params" do
       it "assigns a newly created but unsaved announcement as @announcement" do
         # Trigger the behavior that occurs when invalid params are submitted
-        Announcement.any_instance.stub(:save).and_return(false)
+        allow_any_instance_of(Announcement).to receive(:save).and_return(false)
         post :create, {:announcement => { "user_id" => "invalid value" }}, valid_session
-        assigns(:announcement).should be_a_new(Announcement)
+        expect(assigns(:announcement)).to be_a_new(Announcement)
       end
     end
   end
@@ -86,14 +90,14 @@ describe AnnouncementsController do
         # specifies that the Announcement created on the previous line
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
-        Announcement.any_instance.should_receive(:update).with({ "user_id" => "" })
-        put :update, {:id => announcement.to_param, :announcement => { "user_id" => "" }}, valid_session
+        expect_any_instance_of(Announcement).to receive(:update).with({ "restaurant_name" => "foo" })
+        put :update, {:id => announcement.id, :announcement => { "restaurant_name" => "foo" }}, valid_session
       end
 
       it "assigns the requested announcement as @announcement" do
         announcement = Announcement.create! valid_attributes
         put :update, {:id => announcement.to_param, :announcement => valid_attributes}, valid_session
-        assigns(:announcement).should eq(announcement)
+        expect(assigns(:announcement)).to eq(announcement)
       end
     end
 
@@ -101,9 +105,9 @@ describe AnnouncementsController do
       it "assigns the announcement as @announcement" do
         announcement = Announcement.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
-        Announcement.any_instance.stub(:save).and_return(false)
+        allow_any_instance_of(Announcement).to receive(:save).and_return(false)
         put :update, {:id => announcement.to_param, :announcement => { "user" => "invalid value" }}, valid_session
-        assigns(:announcement).should eq(announcement)
+        expect(assigns(:announcement)).to eq(announcement)
       end
     end
   end
