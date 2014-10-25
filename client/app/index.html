@@ -23,10 +23,8 @@
     <div class="container">
       <div class="header" ng-controller="HeaderCtrl">
         <ul class="nav nav-pills pull-right">
-          <nav-li uri="home">Home</nav-li>
-          <nav-li uri="today">Today</nav-li>
-          <nav-li uri="profile">Profile</nav-li>
-          <nav-li uri="groups">Groups</nav-li>
+          <li ng-class="{ active: isActive('/') }" ng-show="!user.id"><a ng-href="/">Home</a></li>
+          <li ng-class="{ active: isActive('/today') }" ng-show="user.id"><a ng-href="/today">Today</a></li>
           <li ng-class="{ active: isActive('/sign_in') }" ng-show="!user.id"><a ng-href="/sign_in">Sign in</a></li>
           <li ng-show="user.id"><a ng-click='signOut()'>Sign out</a></li>
         </ul>
@@ -95,7 +93,6 @@
         <script src="/scripts/controllers/user-registrations.js"></script>
 
         <script src="/scripts/directives/focus-on-load.js"></script>
-        <script src="/scripts/directives/nav-li.js"></script>
         <!-- endbuild -->
 </body>
 </html>
