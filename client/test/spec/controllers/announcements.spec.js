@@ -24,14 +24,18 @@ describe('AnnouncementsCtrl', function() {
   });
 
   describe('save', function() {
+    var newAnnouncement;
+
     beforeEach(function() {
-      $httpBackend.expect('POST', '/api/announcements').respond(200, { restaurantName: 'Foo' });
+      newAnnouncement = { restaurantName: 'Ucello\'s' };
+      $httpBackend.expect('POST', '/api/announcements').respond(200, newAnnouncement);
+      $httpBackend.expect('GET', '/api/announcements').respond([newAnnouncement]);
       scope.save();
       $httpBackend.flush();
     });
 
-    it('adds an announcement', function() {
-      expect(scope.announcements.length).toBe(2);
+    it('replaces the old announcement with the new one', function() {
+      expect(JSON.stringify(scope.announcements)).toEqual(JSON.stringify([newAnnouncement]));
     });
 
     it('clears the restaurant name', function() {
