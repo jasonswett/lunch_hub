@@ -6,12 +6,22 @@ feature 'Profile', js: true do
     login_page = LoginPage.new
     login_page.visit
     login_page.sign_in(@user.email, @user.password)
-    visit '/profile'
+    
+    @profile_page = ProfilePage.new
+    @profile_page.visit
   end
 
   it 'shows an update message' do
-    fill_in 'name', with: 'Jason'
-    click_on 'Save'
-    expect(page).to have_content('Your profile has been updated.')
+    @profile_page.complete_form(name: 'Jason')
+    expect(@profile_page).to have_success_message
+  end
+
+  it 'saves the new name' do
+    new_name = 'Jason'
+    @profile_page.complete_form(name: new_name)
+    expect(@profile_page).to have_success_message
+
+    @profile_page.visit
+    expect(page).to have_field('name', with: new_name)
   end
 end
