@@ -8,6 +8,6 @@ class Announcement < ActiveRecord::Base
   }
 
   def to_s
-    "#{user.email} wants to go to #{restaurant_name}"
+    "#{user.best_identifier} wants to go to #{restaurant_name}"
   end
 end
