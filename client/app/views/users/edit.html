@@ -13,6 +13,8 @@
            id="name"
            ng-model="updateProfileForm.name"
            required="required"
+           pattern=".*\S+.*"
+           title="Your name can't be only spaces, dude!"
            class="form-control"
            autocomplete="off"
            focus-on-load>
