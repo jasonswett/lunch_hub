@@ -13,10 +13,8 @@ angular.module('lunchHubApp')
 
     $scope.updateProfile = function() {
       $auth.updateAccount($scope.updateProfileForm)
-        .then(function(resp) { 
+        .then(function() { 
           $scope.message = 'Your profile has been updated.';
-        })
-        .catch(function(resp) { 
         });
     };
   }]);
