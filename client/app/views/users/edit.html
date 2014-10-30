@@ -1,5 +1,10 @@
 <h1>User Profile</h1>
 
+<div class="alert alert-success alert-dismissible" role="alert" ng-show="message">
+  <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+  {{message}}
+</div>
+
 <form ng-submit="updateProfile(updateProfileForm)" role="form">
   <div class="form-group">
     <label for="name">Name</label>
