@@ -6,9 +6,13 @@ class LoginPage
   end
 
   def sign_in(email, password)
-    fill_in "Email", with: email
-    fill_in "Password", with: password
-    find("button", text: "Sign in").click
+    fill_in 'Email', with: email
+    fill_in 'Password', with: password
+    find('button', text: 'Sign in').click
+
+    # Force Capybara to wait until the page actually
+    # loads before doing whatever might happen next.
+    find('h1', text: "Today's Lunch")
   end
 
   def sign_out

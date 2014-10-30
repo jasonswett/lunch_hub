@@ -11,4 +11,8 @@ class User < ActiveRecord::Base
     self.uid = SecureRandom.uuid
     skip_confirmation!
   end
+
+  def best_identifier
+    name ? name : email
+  end
 end
