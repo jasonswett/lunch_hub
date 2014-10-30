@@ -9,7 +9,7 @@
  */
 angular.module('lunchHubApp')
   .controller('UsersCtrl', ['$scope', '$auth', function ($scope, $auth) {
-    $scope.updateProfileForm = { name: $auth.user.name }
+    $scope.updateProfileForm = { name: $auth.user.name };
 
     $scope.updateProfile = function() {
       $auth.updateAccount($scope.updateProfileForm)

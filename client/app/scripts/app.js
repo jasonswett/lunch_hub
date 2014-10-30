@@ -37,7 +37,12 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
     })
     .when('/profile', {
       templateUrl: 'views/users/edit.html',
-      controller: 'UsersCtrl'
+      controller: 'UsersCtrl',
+      resolve: {
+        auth: ['$auth', function($auth) {
+          return $auth.validateUser();
+        }]
+      }
     })
     .when('/groups', {
       templateUrl: 'views/groups.html',
