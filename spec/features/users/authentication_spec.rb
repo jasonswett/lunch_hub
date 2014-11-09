@@ -14,7 +14,7 @@ feature 'Authentication', js: true do
     end
 
     scenario 'with invalid credentials' do
-      @login_page.sign_in('invalid@lol.com', 'not the actual password')
+      @login_page.sign_in('invalid@lol.com', 'not the actual password', wait_for_load: false)
       expect(page).to have_content('Invalid login credentials. Please try again.')
     end
   end
@@ -40,11 +40,22 @@ feature 'Authentication', js: true do
     end
   end
 
+  feature 'redirect to today when logged in' do
+    scenario 'after logging in' do
+      @login_page.sign_in(@user.email, @user.password)
+      visit '/'
+      expect(page).to have_content("Today's Lunch")
+    end
+
+    scenario 'when not logged in' do
+      visit '/'
+      expect(page).not_to have_content("Today's Lunch")
+    end
+  end
+
   feature 'restricting page access' do
     scenario 'visiting "today" page when signed in' do
       @login_page.sign_in(@user.email, @user.password)
-      expect(page).to have_content("Today's Lunch")
-
       visit '/today'
       expect(page).to have_content("Today's Lunch")
     end
