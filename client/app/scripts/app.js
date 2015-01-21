@@ -76,8 +76,8 @@ angular.module('lunchHubApp', [
       $location.path('/sign_in');
     });
     $rootScope.$on('$routeChangeStart', function(event, next) {
-      $auth.validateUser().then(function(response) {
-        if ($location.path() == '/') {
+      $auth.validateUser().then(function() {
+        if ($location.path() === '/') {
           $location.path('/today');
         }
       }, function() {
