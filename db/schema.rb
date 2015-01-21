@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140927142422) do
+ActiveRecord::Schema.define(version: 20150121205342) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,17 @@ ActiveRecord::Schema.define(version: 20140927142422) do
   end
 
   add_index "group", ["name"], name: "index_group_on_name", unique: true, using: :btree
+
+  create_table "group_membership", force: true do |t|
+    t.integer  "user_id",    null: false
+    t.integer  "group_id",   null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "group_membership", ["group_id"], name: "index_group_membership_on_group_id", using: :btree
+  add_index "group_membership", ["user_id", "group_id"], name: "index_group_membership_on_user_id_and_group_id", unique: true, using: :btree
+  add_index "group_membership", ["user_id"], name: "index_group_membership_on_user_id", using: :btree
 
   create_table "prospective_user", force: true do |t|
     t.string   "first_name", null: false
@@ -95,5 +106,8 @@ ActiveRecord::Schema.define(version: 20140927142422) do
   add_index "user", ["uid"], name: "index_user_on_uid", unique: true, using: :btree
 
   add_foreign_key "announcement", "user", name: "announcement_user_id_fk"
+
+  add_foreign_key "group_membership", "group", name: "group_membership_group_id_fk"
+  add_foreign_key "group_membership", "user", name: "group_membership_user_id_fk"
 
 end

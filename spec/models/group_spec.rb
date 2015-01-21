@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe Group, :type => :model do
+RSpec.describe Group, :type => :model do
   before do
     @group = Group.new(
       name: "Acme",

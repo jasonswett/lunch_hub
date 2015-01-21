@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe User, :type => :model do
+RSpec.describe User, :type => :model do
   before do
     @user = FactoryGirl.build(:user)
   end
