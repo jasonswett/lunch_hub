@@ -23,16 +23,12 @@ angular.module('lunchHubApp', [
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
+        controller: 'MainCtrl',
+        isPublic: true
       })
       .when('/today', {
         templateUrl: 'views/announcements.html',
-        controller: 'AnnouncementsCtrl',
-        resolve: {
-          auth: ['$auth', function($auth) {
-            return $auth.validateUser();
-          }]
-        }
+        controller: 'AnnouncementsCtrl'
       })
       .when('/profile', {
         templateUrl: 'views/users/edit.html',
@@ -49,11 +45,13 @@ angular.module('lunchHubApp', [
       })
       .when('/sign_in', {
         templateUrl: 'views/user-sessions/new.html',
-        controller: 'UserSessionsCtrl'
+        controller: 'UserSessionsCtrl',
+        isPublic: true
       })
       .when('/sign_up', {
         templateUrl: 'views/user-registrations/new.html',
-        controller: 'UserRegistrationsCtrl'
+        controller: 'UserRegistrationsCtrl',
+        isPublic: true
       })
       .otherwise({
         redirectTo: '/'
@@ -70,11 +68,22 @@ angular.module('lunchHubApp', [
   factory('Group', ['railsResourceFactory', function (railsResourceFactory) {
     return railsResourceFactory({ url: '/api/groups', name: 'group' });
   }]).
-  run(['$rootScope', '$location', function($rootScope, $location) {
+  run(['$rootScope', '$auth', '$location', function($rootScope, $auth, $location) {
     $rootScope.$on('auth:login-success', function() {
       $location.path('/today');
     });
     $rootScope.$on('auth:logout-success', function() {
       $location.path('/sign_in');
+    });
+    $rootScope.$on('$routeChangeStart', function(event, next) {
+      $auth.validateUser().then(function(response) {
+        if ($location.path() == '/') {
+          $location.path('/today');
+        }
+      }, function() {
+        if (!next.isPublic) {
+          $location.path('/sign_in');
+        }
+      });
     });
   }]);

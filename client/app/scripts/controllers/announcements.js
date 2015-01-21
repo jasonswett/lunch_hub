@@ -9,7 +9,7 @@
  */
 angular.module('lunchHubApp')
   .controller('AnnouncementsCtrl', ['$scope', 'Announcement', function ($scope, Announcement) {
-    $scope.refreshAppointments = function() {
+    $scope.refreshAnnouncements = function() {
       Announcement.query().then(function(announcements) {
         $scope.announcements = announcements;
       });
@@ -18,10 +18,10 @@ angular.module('lunchHubApp')
     $scope.save = function() {
       new Announcement($scope.announcement).create().then(function() {
         $scope.announcement.restaurantName = '';
-        $scope.refreshAppointments();
+        $scope.refreshAnnouncements();
       });
     };
 
     $scope.announcements = [];
-    $scope.refreshAppointments();
+    $scope.refreshAnnouncements();
   }]);

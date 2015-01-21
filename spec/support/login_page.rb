@@ -5,14 +5,16 @@ class LoginPage
     Capybara::visit '/sign_in'
   end
 
-  def sign_in(email, password)
+  def sign_in(email, password, options = {})
     fill_in 'Email', with: email
     fill_in 'Password', with: password
     find('button', text: 'Sign in').click
 
     # Force Capybara to wait until the page actually
     # loads before doing whatever might happen next.
-    find('h1', text: "Today's Lunch")
+    if options[:wait_for_load].nil?
+      find('h1', text: "Today's Lunch")
+    end
   end
 
   def sign_out
