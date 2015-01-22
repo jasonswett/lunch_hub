@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
   include DeviseTokenAuth::Concerns::User
   has_many :announcements
+  has_many :group_memberships
+  has_many :groups, through: :group_memberships
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable

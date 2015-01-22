@@ -6,6 +6,8 @@
 </div>
 
 <form ng-submit="updateProfile(updateProfileForm)" role="form">
+
+  <h3>Personal Details</h3>
   <div class="form-group">
     <label for="name">Name</label>
     <input type="text"
@@ -18,6 +20,20 @@
            class="form-control"
            autocomplete="off"
            focus-on-load>
+  </div>
+
+  <h3>My Groups</h3>
+  <div class="form-group">
+    <ul>
+      <li ng-repeat="group in groups">
+        <input type="checkbox"
+               ng-model="selectedGroups[group.id]"
+               value="{{ group.id }}"
+               id="group-{{ group.id }}">
+
+        <label for="group-{{ group.id }}">{{ group.name }}</label>
+      </li>
+    </ul>
   </div>
 
   <button type="submit" class="btn btn-primary">Save</button>

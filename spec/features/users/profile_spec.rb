@@ -24,4 +24,14 @@ feature 'Profile', js: true do
     @profile_page.visit
     expect(page).to have_field('name', with: new_name)
   end
+
+  it 'has a place to select groups' do
+    group = FactoryGirl.create(:group)
+    @profile_page.visit
+    check "group-#{group.id}"
+    click_on 'Save'
+
+    @profile_page.visit
+    expect(find("#group-#{group.id}")).to be_checked
+  end
 end
