@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 feature "Add a group", js: true do
   scenario "with valid inputs" do

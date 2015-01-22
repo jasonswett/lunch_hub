@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe User, :type => :model do
+RSpec.describe User, :type => :model do
   before do
     @user = FactoryGirl.build(:user)
   end
@@ -12,5 +12,12 @@ describe User, :type => :model do
 
   it "doesn't send a confirmation email" do
     expect { @user.save! }.not_to change { ActionMailer::Base.deliveries.count }
+  end
+
+  it "takes group ids" do
+    new_group = FactoryGirl.create(:group)
+    user = User.create(group_ids: [new_group.id])
+
+    expect(user.groups).to include(new_group)
   end
 end

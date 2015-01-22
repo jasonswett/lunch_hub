@@ -9,6 +9,6 @@ class ApplicationController < ActionController::API
   end
 
   def configure_permitted_parameters 
-    devise_parameter_sanitizer.for(:account_update) << :name
+    devise_parameter_sanitizer.for(:account_update) << [:name, { group_ids: [] }]
   end
 end

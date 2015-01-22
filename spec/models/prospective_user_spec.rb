@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe ProspectiveUser, :type => :model do
+RSpec.describe ProspectiveUser, :type => :model do
   before do
     @prospective_user = ProspectiveUser.new(
       first_name: "John",

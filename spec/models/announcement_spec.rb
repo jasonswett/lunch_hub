@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe Announcement, :type => :model do
+RSpec.describe Announcement, :type => :model do
   before do
     @user = FactoryGirl.create(:user)
     @announcement = FactoryGirl.create(:announcement, user: @user)

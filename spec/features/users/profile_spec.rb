@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 feature 'Profile', js: true do
   before do
@@ -23,5 +23,16 @@ feature 'Profile', js: true do
 
     @profile_page.visit
     expect(page).to have_field('name', with: new_name)
+  end
+
+  it 'has a place to select groups' do
+    group = FactoryGirl.create(:group)
+    @profile_page.visit
+    check "group-#{group.id}"
+    @profile_page.complete_form(name: "Jim")
+    expect(@profile_page).to have_success_message
+
+    @profile_page.visit
+    expect(find("#group-#{group.id}")).to be_checked
   end
 end

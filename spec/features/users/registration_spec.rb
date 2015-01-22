@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 feature 'Registration', js: true do
   let(:email) { Faker::Internet.email }
