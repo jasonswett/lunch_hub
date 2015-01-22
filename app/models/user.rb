@@ -17,4 +17,10 @@ class User < ActiveRecord::Base
   def best_identifier
     name ? name : email
   end
+
+  def as_json(options = {})
+    json = super(options)
+    json[:group_ids] = groups.collect(&:id)
+    json
+  end
 end

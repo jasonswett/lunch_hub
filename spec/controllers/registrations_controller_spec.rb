@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe RegistrationsController, :type => :controller do
+RSpec.describe DeviseTokenAuth::RegistrationsController, :type => :controller do
   let(:user) { FactoryGirl.create(:user, name: "Jason" ) }
   let(:default_params) { {} }
   let(:valid_session) { {} }

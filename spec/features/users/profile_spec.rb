@@ -29,7 +29,8 @@ feature 'Profile', js: true do
     group = FactoryGirl.create(:group)
     @profile_page.visit
     check "group-#{group.id}"
-    click_on 'Save'
+    @profile_page.complete_form(name: "Jim")
+    expect(@profile_page).to have_success_message
 
     @profile_page.visit
     expect(find("#group-#{group.id}")).to be_checked

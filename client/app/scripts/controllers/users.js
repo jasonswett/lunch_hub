@@ -9,6 +9,7 @@
  */
 angular.module('lunchHubApp')
   .controller('UsersCtrl', ['$scope', '$auth', 'Group', function ($scope, $auth, Group) {
+    // TODO: Move this to a service.
     var selectedIds = function(selectedGroups) {
       var ids = [];
       angular.forEach(selectedGroups, function(groupIsSelected, groupId) {
@@ -21,13 +22,17 @@ angular.module('lunchHubApp')
 
     $scope.updateProfileForm = { name: $auth.user.name };
 
+    $scope.selectedGroups = {};
+    $auth.user.group_ids.forEach(function(groupId) {
+      $scope.selectedGroups[groupId] = true;
+    });
+
     Group.query().then(function(groups) {
       $scope.groups = groups;
-      $scope.selectedGroups = {};
     });
 
     $scope.updateProfile = function() {
-      $scope.updateProfileForm['group_ids'] = selectedIds($scope.selectedGroups);
+      $scope.updateProfileForm.group_ids = selectedIds($scope.selectedGroups);
 
       $auth.updateAccount($scope.updateProfileForm)
         .then(function() { 
