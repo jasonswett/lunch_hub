@@ -12,7 +12,9 @@ angular.module('lunchHubApp')
     var selectedIds = function(selectedGroups) {
       var ids = [];
       angular.forEach(selectedGroups, function(groupIsSelected, groupId) {
-        if (groupIsSelected) ids.push(groupId);
+        if (groupIsSelected) {
+          ids.push(groupId);
+        }
       });
       return ids;
     };
