@@ -30,6 +30,7 @@ module.exports = function(config) {
       'bower_components/angularjs-rails-resource/angularjs-rails-resource.js',
       'bower_components/ng-token-auth/dist/ng-token-auth.js',
       'app/scripts/app.js',
+      'app/scripts/services/*.js',
       'app/scripts/controllers/*.js',
       'test/spec/controllers/setup.js',
       'test/spec/controllers/*.spec.js'
