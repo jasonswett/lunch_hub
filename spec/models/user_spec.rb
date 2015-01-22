@@ -20,4 +20,12 @@ RSpec.describe User, :type => :model do
 
     expect(user.groups).to include(new_group)
   end
+
+  describe "#as_json" do
+    it "adds group ids" do
+      group = FactoryGirl.create(:group)
+      @user.groups << group
+      expect(@user.as_json["group_ids"]).to eq([group.id])
+    end
+  end
 end

@@ -19,8 +19,6 @@ class User < ActiveRecord::Base
   end
 
   def as_json(options = {})
-    json = super(options)
-    json[:group_ids] = groups.collect(&:id)
-    json
+    super(options).merge("group_ids" => groups.collect(&:id))
   end
 end
