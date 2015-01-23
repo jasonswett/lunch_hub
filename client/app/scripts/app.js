@@ -28,7 +28,12 @@ angular.module('lunchHubApp', [
       })
       .when('/today', {
         templateUrl: 'views/announcements.html',
-        controller: 'AnnouncementsCtrl'
+        controller: 'AnnouncementsCtrl',
+        resolve: {
+          auth: ['$auth', function($auth) {
+            return $auth.validateUser();
+          }]
+        }
       })
       .when('/profile', {
         templateUrl: 'views/users/edit.html',

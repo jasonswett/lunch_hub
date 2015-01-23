@@ -1,5 +1,7 @@
 <h1>Today's Lunch</h1>
 
+{{ userHasGroups }}
+
 <form class="form-inline" role="form">
   <input ng-model="announcement.restaurantName" type="text" class="form-control" focus-on-load>
   <button ng-click="save()" class="btn btn-default">Announce</button>
