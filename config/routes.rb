@@ -3,6 +3,8 @@ LunchHub::Application.routes.draw do
     resources :addresses
     resources :groups
     resources :announcements
-    mount_devise_token_auth_for 'User', at: 'auth'
+    mount_devise_token_auth_for 'User', at: 'auth', controllers: {
+      registrations: 'registrations'
+    }
   end
 end
