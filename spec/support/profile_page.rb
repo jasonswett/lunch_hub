@@ -13,4 +13,8 @@ class ProfilePage
   def has_success_message?
     page.has_content?('Your profile has been updated.')
   end
+
+  def group_checkbox(group)
+    find("#group-#{group.id}")
+  end
 end
