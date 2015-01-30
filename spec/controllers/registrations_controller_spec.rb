@@ -11,6 +11,22 @@ RSpec.describe RegistrationsController, :type => :controller do
     controller.instance_variable_set(:@user, user)
   end
 
+  describe "POST create" do
+    context "duplicate registration" do
+      it "has an error message than makes sense" do
+        existing_user = FactoryGirl.create(:user)
+        post :create, {
+          email: existing_user.email,
+          password: "aaaaaaaa",
+          password_confirmation: "aaaaaaaa",
+          confirm_success_url: ""
+        }
+        parsed_response = JSON.parse(response.body)
+        expect(parsed_response["errors"].first).to eq("Email has already been taken")
+      end
+    end
+  end
+
   describe "PUT update" do
     it "takes a name" do
       put :update, { name: "Jase" }, valid_session
