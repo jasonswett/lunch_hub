@@ -1,4 +1,12 @@
-angular.module 'lunchHub', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ngResource', 'ui.router', 'ui.bootstrap']
+angular.module 'lunchHubApp', [
+  'ngAnimate',
+  'ngCookies',
+  'ngTouch',
+  'ngSanitize',
+  'ngResource',
+  'ui.router',
+  'ui.bootstrap'
+]
   .config ($stateProvider, $urlRouterProvider) ->
     $stateProvider
       .state "home",

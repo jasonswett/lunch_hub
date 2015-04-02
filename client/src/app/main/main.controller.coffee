@@ -1,4 +1,4 @@
-angular.module "lunchHub"
+angular.module "lunchHubApp"
   .controller "MainCtrl", ($scope) ->
     $scope.awesomeThings = [
       {
