@@ -22,11 +22,12 @@ module.exports = function(options) {
       baseDir: baseDir,
       routes: routes,
       middleware: [
-        proxyMiddleware('/api', { target: 'http://localhost:4000/' })
+        proxyMiddleware('/api', { target: 'http://localhost:3000' })
       ]
     };
 
     browserSync.instance = browserSync.init({
+      port: 9000,
       startPath: '/',
       server: server,
       browser: browser
