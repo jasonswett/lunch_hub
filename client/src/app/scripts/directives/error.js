@@ -4,6 +4,6 @@ angular.module('lunchHubApp')
   .directive('error', function() {
     return {
       restrict: 'E',
-      templateUrl: 'views/directives/error.html'
+      templateUrl: 'app/views/directives/error.html'
     };
   });

@@ -18,7 +18,7 @@ module.exports = function(options) {
         quotes: true
       }))
       .pipe($.angularTemplatecache('templateCacheHtml.js', {
-        module: 'lunchHub'
+        module: 'lunchHubApp'
       }))
       .pipe(gulp.dest(options.tmp + '/partials/'));
   });

@@ -1,0 +1,40 @@
+<h1>User Profile</h1>
+
+<div class="alert alert-success alert-dismissible" role="alert" ng-show="message">
+  <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+  {{message}}
+</div>
+
+<form ng-submit="updateProfile(updateProfileForm)" role="form">
+
+  <h3>Personal Details</h3>
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input type="text"
+           name="name"
+           id="name"
+           ng-model="updateProfileForm.name"
+           required="required"
+           pattern=".*\S+.*"
+           title="Your name can't be only spaces, dude!"
+           class="form-control"
+           autocomplete="off"
+           focus-on-load>
+  </div>
+
+  <h3>My Groups</h3>
+  <div class="form-group">
+    <ul>
+      <li ng-repeat="group in groups">
+        <input type="checkbox"
+               ng-model="selectedGroups[group.id]"
+               value="{{ group.id }}"
+               id="group-{{ group.id }}">
+
+        <label for="group-{{ group.id }}">{{ group.name }}</label>
+      </li>
+    </ul>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Save</button>
+</form>
