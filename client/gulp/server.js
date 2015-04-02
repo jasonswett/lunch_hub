@@ -3,10 +3,9 @@
 var gulp = require('gulp');
 var browserSync = require('browser-sync');
 var browserSyncSpa = require('browser-sync-spa');
-
 var util = require('util');
-
 var middleware = require('./proxy');
+var proxyMiddleware = require('http-proxy-middleware');
 
 module.exports = function(options) {
 
@@ -22,12 +21,11 @@ module.exports = function(options) {
 
     var server = {
       baseDir: baseDir,
-      routes: routes
+      routes: routes,
+      middleware: [
+        proxyMiddleware('/api', { target: 'http://localhost:4000/' })
+      ]
     };
-
-    if(middleware.length > 0) {
-      server.middleware = middleware;
-    }
 
     browserSync.instance = browserSync.init({
       startPath: '/',
