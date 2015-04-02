@@ -5,6 +5,7 @@ var browserSync = require('browser-sync');
 var browserSyncSpa = require('browser-sync-spa');
 var util = require('util');
 var proxyMiddleware = require('http-proxy-middleware');
+var exec = require('child_process').exec;
 
 module.exports = function(options) {
 
@@ -38,9 +39,15 @@ module.exports = function(options) {
     selector: '[ng-app]'// Only needed for angular apps
   }));
 
+  gulp.task('rails', function() {
+    exec("rails server");
+  });
+
   gulp.task('serve', ['watch'], function () {
     browserSyncInit([options.tmp + '/serve', options.src]);
   });
+
+  gulp.task('serve:full-stack', ['rails', 'serve']);
 
   gulp.task('serve:dist', ['build'], function () {
     browserSyncInit(options.dist);
