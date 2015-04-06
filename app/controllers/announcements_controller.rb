@@ -4,7 +4,7 @@ class AnnouncementsController < ApplicationController
   # GET /announcements
   # GET /announcements.json
   def index
-    @announcements = Announcement.for_today
+    @announcements = Announcement.for_today.visible_to(current_user)
 
     render
   end

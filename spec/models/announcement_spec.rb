@@ -41,6 +41,41 @@ RSpec.describe Announcement, :type => :model do
     end
   end
 
+  describe "visible_to" do
+    context "when I'm not a member of any groups" do
+      it "includes the announcement" do
+        jason = FactoryGirl.create(:user)
+        announcement = FactoryGirl.create(:announcement, user: jason)
+        expect(Announcement.visible_to(jason)).to include(announcement)
+      end
+    end
+
+    context "when the announcement is from someone in my groups" do
+      it "includes the announcement" do
+        jacob_mews = FactoryGirl.create(:group)
+
+        nad = FactoryGirl.create(:user)
+        FactoryGirl.create(:group_membership, user: nad, group: jacob_mews)
+
+        jason = FactoryGirl.create(:user)
+        FactoryGirl.create(:group_membership, user: jason, group: jacob_mews)
+
+        announcement = FactoryGirl.create(:announcement, user: nad)
+        expect(Announcement.visible_to(jason)).to include(announcement)
+      end
+    end
+
+    context "when the announcement is from someone not in any of my groups" do
+      it "does not include the announcement" do
+        chidi = FactoryGirl.create(:user)
+        jason = FactoryGirl.create(:user)
+
+        announcement = FactoryGirl.create(:announcement, user: chidi)
+        expect(Announcement.visible_to(jason)).not_to include(announcement)
+      end
+    end
+  end
+
   describe 'for_today' do
     before do
       @announcement_from_today = FactoryGirl.create(:announcement)

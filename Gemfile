@@ -46,6 +46,10 @@ group :development do
   gem 'letter_opener'
 end
 
+group :development, :test do
+  gem 'pry'
+end
+
 group :test do
   gem 'rspec', '~> 3.1'
   gem 'rspec-rails', '~> 3.1'
