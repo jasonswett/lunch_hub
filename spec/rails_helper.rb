@@ -61,7 +61,7 @@ RSpec.configure do |config|
   end
 
   config.before(:all, type: :feature) do
-    system("grunt build --gruntfile #{Rails.configuration.gruntfile_location}")
+    system("gulp build --gulpfile #{Rails.configuration.gulpfile_location}")
   end
 
   config.after(:all, type: :feature) do

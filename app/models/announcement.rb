@@ -4,7 +4,12 @@ class Announcement < ActiveRecord::Base
   before_save -> { user.announcements.for_today.destroy_all }
 
   scope :for_today, -> {
-    where("created_at >= ?", Time.zone.now.beginning_of_day)
+    where("announcement.created_at >= ?", Time.zone.now.beginning_of_day)
+  }
+
+  scope :visible_to, -> (user) {
+    conditions = { "group_membership.group_id" => user.groups.map(&:id) }
+    (user.announcements + joins(user: :group_memberships).where(conditions)).uniq
   }
 
   def to_s
